@@ -1,0 +1,206 @@
+<!--?xml version="1.0" encoding="UTF-8" ?-->
+<sited ver="4" debug="1" engine="34" schema="1">
+    <meta>
+    <ua></ua>
+    <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
+    <title>漫画160</title>
+    <author>Yinr</author>
+    <contact>yinr@yinr.cc</contact>
+    <intro>[漫画] 漫画 160</intro>
+    <alert></alert>
+    <url>https://m.mh160.co</url>
+    <expr>m\.mh160\.co</expr>
+    <logo></logo>
+    <encode>UTF-8</encode>
+    <about title="关于" mail="yinr@yinr.cc">
+        <item title="插件开发者：@Yinr" />
+        <item />
+        <item txt="点击右下角或复制邮箱反馈问题" />
+        <item url="yinr@yinr.cc" />
+    </about>
+    </meta>
+    <main dtype="1" btag="漫画">
+        <home>
+            <hots cache="1d" showImg="1" w="3" h="4" method="get"
+                  title="排行榜"
+                  parse="hots_parse"
+                  url="https://m.mh160.co/kanmanhua/zaixian_hit.html" />
+            <updates cache="1d" showImg="1" method="get"
+                     title="最近更新"
+                     parse="updates_parse"
+                     url="https://m.mh160.co/kanmanhua/zaixian_recent.html" />
+            <tags title="分类">
+                <item group="按状态" title="完结" url="https://m.mh160.co/kanmanhua/wanjie/@page.html" />
+                <item title="连载" url="https://m.mh160.co/kanmanhua/lianzai/@page.html" />
+                <item group="按地区" title="日韩" url="https://m.mh160.co/kanmanhua/zaixian_rhmh/@page.html" />
+                <item title="内地" url="https://m.mh160.co/kanmanhua/zaixian_dlmh/@page.html" />
+                <item title="港台" url="https://m.mh160.co/kanmanhua/zaixian_gtmh/@page.html" />
+                <item title="欧美" url="https://m.mh160.co/kanmanhua/zaixian_ommh/@page.html" />
+                <item group="按类型" title="热血" url="https://m.mh160.co/kanmanhua/rexue/@page.html" />
+                <item title="格斗" url="https://m.mh160.co/kanmanhua/gedou/@page.html" />
+                <item title="科幻" url="https://m.mh160.co/kanmanhua/kehuan/@page.html" />
+                <item title="竞技" url="https://m.mh160.co/kanmanhua/jingji/@page.html" />
+                <item title="搞笑" url="https://m.mh160.co/kanmanhua/gaoxiao/@page.html" />
+                <item title="推理" url="https://m.mh160.co/kanmanhua/tuili/@page.html" />
+                <item title="恐怖" url="https://m.mh160.co/kanmanhua/kongbu/@page.html" />
+                <item title="耽美" url="https://m.mh160.co/kanmanhua/danmei/@page.html" />
+                <item title="少女" url="https://m.mh160.co/kanmanhua/shaonv/@page.html" />
+                <item title="恋爱" url="https://m.mh160.co/kanmanhua/lianai/@page.html" />
+                <item title="生活" url="https://m.mh160.co/kanmanhua/shenghuo/@page.html" />
+                <item title="战争" url="https://m.mh160.co/kanmanhua/zhanzheng/@page.html" />
+                <item title="故事" url="https://m.mh160.co/kanmanhua/gushi/@page.html" />
+                <item title="百合" url="https://m.mh160.co/kanmanhua/baihe/@page.html" />
+                <item title="其他" url="https://m.mh160.co/kanmanhua/qita/@page.html" />
+                <item title="伪娘" url="https://m.mh160.co/kanmanhua/weiniang/@page.html" />
+            </tags>
+        </home>
+
+        <search cache="0" method="get" parse="search_parse" url="https://m.mh160.co/statics/search.aspx?key=@key&amp;page=@page" />
+
+        <tag cache="10m" showImg="1" method="get" parse="tag_parse" />
+
+        <book cache="1d" method="get" parse="book_parse" header="cookie $$ referer" />
+
+        <section cache="1d" method="get" parse="section_parse" header="cookie $$ referer" />
+    </main>
+    <script>
+        <require>
+            <item url="http://sited.noear.org/addin/js/cheerio.js" lib="cheerio" />
+            <item url="https://raw.githubusercontent.com/dankogai/js-base64/master/base64.min.js" />
+        </require>
+        <code>
+            <![CDATA[
+var mainHost = "https://m.mh160.co";
+
+function urla(u, host) {
+    host = host || mainHost;
+    host = host.replace(/\/$/, '');
+
+    if (u.indexOf("http") < 0) {
+        if (u.substr(0, 2) != '//') {
+            if (u.substr(0, 1) != '/') u = host + '/' + u;
+            else u = host + u;
+        } else {
+            u = 'https:' + u;
+        }
+    }
+    return encodeURI(u);
+}
+
+function hots_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+
+    $('div.itemBox').each(function () {
+        var book = $(this);
+        var book_title = book.find('a.title');
+        var bm = {};
+        bm.name = book_title.text();
+        bm.url = urla(book_title.attr('href'));
+        bm.logo = book.find('img').attr('src');
+        list.push(bm);
+    });
+
+    return JSON.stringify(list);
+}
+
+function updates_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+
+    $('div.itemBox').each(function () {
+        var book = $(this);
+        var book_title = book.find('a.title');
+        var bm = {};
+        bm.name = book_title.text();
+        bm.url = urla(book_title.attr('href'));
+        bm.logo = book.find('img').attr('src');
+        bm.newSection = book.find('.txtItme').eq(0).text();
+        bm.updateTime = book.find('.date').text().substr(0, 10);
+        list.push(bm);
+    });
+
+    return JSON.stringify(list);
+}
+
+function tag_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+
+    $('#listbody > li').each(function () {
+        var book = $(this);
+        var bm = {};
+        bm.name = book.children('.txtA').text();
+        bm.url = urla(book.children('.ImgA').attr('href'));
+        bm.logo = book.find('a.ImgA > img').attr('src');
+        bm.author = "";
+        bm.status = "";
+        bm.newSection = book.children('.info').text();
+        bm.updateTime = "";
+        list.push(bm);
+    });
+
+    return JSON.stringify(list);
+}
+
+function search_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+
+    $('#listbody > li').each(function () {
+        var book = $(this);
+        var bm = {};
+        bm.name = book.children('.txtA').text();
+        bm.url = urla(book.children('.ImgA').attr('href'));
+        bm.logo = book.find('a.ImgA > img').attr('src');
+        bm.author = "";
+        bm.status = "";
+        bm.newSection = book.children('.info').text();
+        bm.updateTime = "";
+        bm.btag = "漫画";
+        list.push(bm);
+    });
+
+    return JSON.stringify(list);
+}
+
+function book_parse(url, html) {
+    var $ = cheerio.load(html);
+    var data = {};
+
+    data.name = $('p.txtItme.h1').text();
+    data.author = $('p.txtItme').eq(2).text().substring(3);
+    data.intro = $('.detailContent').text().trim();
+    data.logo = $('#Cover img').attr('src');
+    data.updateTime = $('p.txtItme:nth-child(6)').text().substring(3);
+    data.isSectionsAsc = 0;
+    var sections = [];
+
+    $('#chapterList_ul_1 > li > a').each(function () {
+        var list_item = $(this);
+        sections.push({
+            'name': list_item.text(),
+            'url': urla(list_item.attr('href'))
+        });
+    });
+
+    data.sections = sections;
+    return JSON.stringify(data);
+}
+
+function section_parse(url, html) {
+    var pid = html.match(/var qTcms_S_p_id="(\d+)";/)[1];
+    var imgHost = parseInt(pid) > 542724 ? "https://mhpic5.miyeye.cn" : "https://mhpic6.miyeye.cn";
+
+    var urlTxt = Base64.decode(html.match(/var qTcms_S_m_murl_e="([^"]+)";/)[1]).split("$qingtiandy$");
+    var list = urlTxt.map(function(x){
+        return imgHost + x;
+    });
+
+    return JSON.stringify(list);
+}
+
+            ]]>
+        </code>
+    </script>
+</sited>

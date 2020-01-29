@@ -1,0 +1,93 @@
+<!--?xml version="1.0" encoding="UTF-8" ?-->
+<sited ver="1" debug="1" engine="34" schema="1">
+    <meta>
+    <ua></ua>
+    <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
+    <title>GUID 生成器</title>
+    <author>Yinr</author>
+    <contact>yinr@yinr.cc</contact>
+    <intro>[小工具] GUID 生成器，生成符合 RFC 4122 规范的 GUID v4（无连字符）。</intro>
+    <alert></alert>
+    <url>https://yinr.cc/ddcat/</url>
+    <expr>yinr\.cc\/ddcat</expr>
+    <logo></logo>
+    <encode>UTF-8</encode>
+    <about title="关于" mail="yinr@yinr.cc">
+        <item title="插件开发者：@Yinr" />
+        <item />
+        <item txt="点击右下角或复制邮箱反馈问题" />
+        <item url="yinr@yinr.cc" />
+    </about>
+    </meta>
+    <main dtype="8" btag="信息" showWeb="0">
+        <home>
+            <updates title="GUID 工具">
+                <item title="GUID v4 生成器" url="https://yinr.cc/ddcat/GUID/" />
+            </updates>
+        </home>
+        <book>
+            <book dtype="8" expr="\/GUID" btn="生成 GUID" method="@null" parse="book_parse_GUID" update="2" showWeb="0"
+                buildWeb="book_buildWeb">
+                <item title="在 App 设置开启“长按文本复制到剪贴板”后可长按复制 GUID。" />
+                <!--
+                    <a href="https://www.ietf.org/rfc/rfc4122">RFC 4122</a>
+                    <a href="https://blogs.cozi.com/tech/2010/04/generating-uuids-in-javascript.html">
+                        Generating UUIDs in Javascript
+                    </a>
+                -->
+            </book>
+        </book>
+    </main>
+    <script>
+        <!-- <require>
+            <item url="http://sited.noear.org/addin/js/cheerio.js" lib="cheerio" />
+        </require> -->
+        <code>
+            <![CDATA[
+function book_buildWeb(url) {
+    return "https://yinr.cc/ddcat/";
+}
+
+function book_parse_GUID(url, str) {
+    var data = JSON.parse(str);
+    var list = [];
+
+    var guid = function () {
+        var hex = '0123456789abcdef';
+
+        var randomInt = function () {
+            return Math.floor(0x100000000 * Math.random());
+        };
+
+        var data = [
+            (randomInt() & 0xFFFFFFFF),
+            (randomInt() & 0xFFFF0FFF) | (4 << 12),
+            (randomInt() & 0x3FFFFFFF) | 0x80000000,
+            (randomInt() & 0xFFFFFFFF)
+        ];
+
+        var uuid = [];
+        for (var i = 0, k = 0; i < 4; i++) {
+            var rnd = data[i];
+            for (var j = 0; j < 8; j++) {
+                var r = (rnd >>> 28) & 0xf;
+                rnd = (rnd & 0x0FFFFFFF) << 4;
+                uuid.push('0123456789abcdef'.charAt(r));
+            }
+        }
+
+        return uuid.join('');
+    };
+
+    list.push({
+        d: guid(),
+        t: 1,
+        u: 1
+    });
+
+    return JSON.stringify(list);
+}
+            ]]>
+        </code>
+    </script>
+</sited>

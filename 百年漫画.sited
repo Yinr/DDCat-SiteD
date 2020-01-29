@@ -1,0 +1,326 @@
+<!--?xml version="1.0" encoding="UTF-8" ?-->
+<sited ver="5" debug="1" engine="34" schema="1">
+    <meta>
+    <ua></ua>
+    <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
+    <title>百年漫画</title>
+    <author>Yinr</author>
+    <contact>yinr@yinr.cc</contact>
+    <intro>[漫画] 百年漫画网专注百年漫画，言情漫画，少女爱情等类型的漫画。百年漫画网第一时间更新天才小毒妃漫画，大角虫漫画，王牌校草漫画，指染成婚漫画等好看的漫画，看百年、少女爱情等类型漫画最好的网站！</intro>
+    <alert></alert>
+    <url>https://m.bnmanhua.com/</url>
+    <expr>m\.bnmanhua\.com</expr>
+    <logo>https://m.bnmanhua.com/favicon.ico</logo>
+    <encode>UTF-8</encode>
+    <about title="关于" mail="yinr@yinr.cc">
+        <item title="插件开发者：@Yinr" />
+        <item />
+        <item txt="点击右下角或复制邮箱反馈问题" />
+        <item url="yinr@yinr.cc" />
+    </about>
+    </meta>
+    <main dtype="1" btag="漫画">
+        <home>
+            <hots cache="1d" showImg="1" w="3" h="4" method="get"
+                  title="排行"
+                  parse="hots_parse"
+                  url="https://m.bnmanhua.com/page/hot/1.html" />
+            <updates cache="1d" showImg="1" w="3" h="4" method="get"
+                     title="更新"
+                     parse="updates_parse"
+                     url="https://m.bnmanhua.com/page/new/1.html" />
+            <tags title="分类">
+                <item group="按状态" title="已完结" url="https://m.bnmanhua.com/page/wanjie/@page.html" />
+                    <item title="连载中" url="https://m.bnmanhua.com/page/lianzai/@page.html" />
+
+                <item group="按分类" title="少年漫画" url="https://m.bnmanhua.com/list/1/@page.html" />
+                    <item title="少女漫画" url="https://m.bnmanhua.com/list/2/@page.html" />
+                    <item title="青年漫画" url="https://m.bnmanhua.com/list/3/@page.html" />
+                    <item title="女性漫画" url="https://m.bnmanhua.com/list/4/@page.html" />
+
+                <item group="按地区" title="日韩" url="https://m.bnmanhua.com/page/rihan/@page.html" />
+                    <item title="国产" url="https://m.bnmanhua.com/page/guochan/@page.html" />
+                    <item title="大陆漫画" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-area-%E5%A4%A7%E9%99%86%E6%BC%AB%E7%94%BB.html" />
+                    <item title="日韩漫画" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-area-%E6%97%A5%E9%9F%A9%E6%BC%AB%E7%94%BB.html" />
+                    <item title="港台漫画" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-area-%E6%B8%AF%E5%8F%B0%E6%BC%AB%E7%94%BB.html" />
+                    <item title="欧美漫画" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-area-%E6%AC%A7%E7%BE%8E%E6%BC%AB%E7%94%BB.html" />
+
+                <item group="按内容" title="热血" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-1.html" />
+                    <item title="玄幻" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-2.html" />
+                    <item title="科幻" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-3.html" />
+                    <item title="恐怖" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-4.html" />
+                    <item title="后宫" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-5.html" />
+                    <item title="竞技" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-6.html" />
+                    <item title="搞笑" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-7.html" />
+                    <item title="魔幻" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-8.html" />
+                    <item title="恋爱" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-9.html" />
+                    <item title="悬疑" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-10.html" />
+                    <item title="治愈" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-11.html" />
+                    <item title="耽美" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-12.html" />
+                    <item title="格斗" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-13.html" />
+                    <item title="推理" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-14.html" />
+                    <item title="美食" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-15.html" />
+                    <item title="励志" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-16.html" />
+                    <item title="复仇" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-17.html" />
+                    <item title="生活" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-18.html" />
+                    <item title="百合" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-19.html" />
+                    <item title="仙侠" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-20.html" />
+                    <item title="邪恶" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-21.html" />
+                    <item title="穿越" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-22.html" />
+                    <item title="运动" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-23.html" />
+                    <item title="恐怖" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-24.html" />
+                    <item title="虐心" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-25.html" />
+                    <item title="纯爱" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-26.html" />
+                    <item title="暗黑" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-27.html" />
+                    <item title="脑洞" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-28.html" />
+                    <item title="血腥" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-29.html" />
+                    <item title="灵异" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-30.html" />
+                    <item title="同人" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-31.html" />
+                    <item title="体育" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-32.html" />
+                    <item title="惊险" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-33.html" />
+                    <item title="真人" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-34.html" />
+                    <item title="冒险" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-35.html" />
+                    <item title="生活" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-36.html" />
+                    <item title="霸总" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-37.html" />
+                    <item title="古风" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-38.html" />
+                    <item title="校园" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-39.html" />
+                    <item title="爆笑" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-40.html" />
+                    <item title="彩虹" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-41.html" />
+                    <item title="都市" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-42.html" />
+                    <item title="战争" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-43.html" />
+                    <item title="社会" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-44.html" />
+                    <item title="明星" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-45.html" />
+                    <item title="奇幻" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-46.html" />
+                    <item title="动作" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-47.html" />
+                    <item title="少女" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-48.html" />
+                    <item title="修真" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-49.html" />
+                    <item title="恋爱生活科幻" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-50.html" />
+                    <item title="架空" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-51.html" />
+                    <item title="浪漫" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-52.html" />
+                    <item title="武侠" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-53.html" />
+                    <item title="萌系" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-54.html" />
+                    <item title="少女爱情" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-55.html" />
+                    <item title="爱情" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-56.html" />
+                    <item title="轻小说" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-57.html" />
+                    <item title="机甲" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-58.html" />
+                    <item title="历史" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-59.html" />
+                    <item title="日常" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-60.html" />
+                    <item title="温馨" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-61.html" />
+                    <item title="段子" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-62.html" />
+                    <item title="震撼" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-63.html" />
+                    <item title="恶搞" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-64.html" />
+                    <item title="恐怖灵异" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-65.html" />
+                    <item title="侦探推理" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-66.html" />
+                    <item title="欢乐向" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-67.html" />
+                    <item title="职场" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-68.html" />
+                    <item title="搞笑喜剧" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-69.html" />
+                    <item title="东方" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-70.html" />
+                    <item title="科幻魔幻" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-71.html" />
+                    <item title="宅系" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-72.html" />
+                    <item title="剧情" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-73.html" />
+                    <item title="节操" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-74.html" />
+                    <item title="美少女" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-75.html" />
+                    <item title="蔷薇" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-76.html" />
+                    <item title="战斗" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-77.html" />
+                    <item title="召唤兽" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-78.html" />
+                    <item title="异能" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-79.html" />
+                    <item title="武侠格斗" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-80.html" />
+                    <item title="耽美BL" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-81.html" />
+                    <item title="腹黑" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-82.html" />
+                    <item title="猎奇" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-83.html" />
+                    <item title="神鬼" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-84.html" />
+                    <item title="魔法" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-85.html" />
+                    <item title="漫画" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-86.html" />
+                    <item title="四格" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-87.html" />
+                    <item title="性转换" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-88.html" />
+                    <item title="音乐舞蹈" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-89.html" />
+                    <item title="西方魔幻" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-90.html" />
+                    <item title="伪娘" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-91.html" />
+                    <item title="惊悚" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-92.html" />
+                    <item title="宫斗" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-93.html" />
+                    <item title="舰娘" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-94.html" />
+                    <item title="其他" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-95.html" />
+                    <item title="高清单行" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-96.html" />
+                    <item title="动画" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-97.html" />
+                    <item title="侦探" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-98.html" />
+                    <item title="机战" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-99.html" />
+                    <item title="恋爱校园" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-100.html" />
+                    <item title="魔幻神话" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-101.html" />
+                    <item title="福利" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-102.html" />
+                    <item title="伦理" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-103.html" />
+                    <item title="新作" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-104.html" />
+                    <item title="布卡漫画" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-classid-105.html" />
+            </tags>
+        </home>
+
+        <search cache="0" method="get" parse="search_parse" url="https://m.bnmanhua.com/index.php?m=vod-search-pg-@page-wd-@key.html" />
+
+        <tag cache="10m" showImg="1" w="3" h="4" method="get" parse="tag_parse" />
+
+        <book cache="1d" method="get" parse="book_parse" />
+
+        <section cache="1d" method="get" parse="section_parse" header="cookie $$ referer" />
+    </main>
+    <script>
+        <require>
+            <item url="http://sited.noear.org/addin/js/cheerio.js" lib="cheerio" />
+        </require>
+        <code>
+            <![CDATA[
+var mainHost = "https://m.bnmanhua.com";
+
+function urla(u, host) {
+    host = host || mainHost;
+    host = host.replace(/\/$/, '');
+
+    if (u.indexOf("http") < 0) {
+        if (u.substr(0, 2) != '//') {
+            if (u.substr(0, 1) != '/') u = host + '/' + u;
+            else u = host + u;
+        } else {
+            u = 'http:' + u;
+        }
+    }
+    return u;
+}
+
+function hots_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+
+    $('li.vbox').each(function () {
+        var book = $(this);
+        var book_title = book.find('a');
+        var bm = {};
+        bm.name = book_title.text();
+        bm.url = urla(book_title.attr('href'));
+        bm.logo = book.find('mip-img').attr('src');
+        list.push(bm);
+    });
+
+    return JSON.stringify(list);
+}
+
+function updates_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+
+    $('li.vbox').each(function () {
+        var book = $(this);
+        var book_title = book.find('a');
+        var bm = {};
+        bm.name = book_title.text();
+        bm.url = urla(book_title.attr('href'));
+        bm.logo = book.find('mip-img').attr('src');
+        bm.newSection = book.find('span').text();
+        bm.updateTime = book.children('h4').eq(1).text();
+        list.push(bm);
+    });
+
+    return JSON.stringify(list);
+}
+
+function tag_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+
+    $('li.vbox').each(function () {
+        var book = $(this);
+        var bm = {};
+        var book_title = book.find('a');
+        bm.name = book_title.text();
+        bm.url = urla(book_title.attr('href'));
+        bm.logo = book.find('mip-img').attr('src');
+        bm.author = "";
+        bm.status = "";
+        bm.newSection = book.find('span').text();
+        bm.updateTime = book.children('h4').eq(1).text();
+        list.push(bm);
+    });
+
+    return JSON.stringify(list);
+}
+
+function search_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+
+    $('li.vbox').each(function () {
+        var book = $(this);
+        var bm = {};
+        var book_title = book.find('a');
+        bm.name = book_title.text();
+        bm.url = urla(book_title.attr('href'));
+        bm.logo = book.find('mip-img').attr('src');
+        bm.author = "";
+        bm.status = "";
+        bm.newSection = book.find('span').text();
+        bm.updateTime = book.children('h4').eq(1).text();
+        bm.btag = "漫画";
+        list.push(bm);
+    });
+
+    return JSON.stringify(list);
+}
+
+function book_parse(url, html) {
+    var $ = cheerio.load(html);
+    var data = {};
+
+    data.name = $('.data > h4').text();
+    data.author = $('.dir').text().substr(3);
+    data.intro = $('.tbox_js').text();
+    data.logo = $('.img > mip-img').attr('src');
+    data.updateTime = $('.act').text().substr(3,10);
+    /*data.isSectionsAsc = 1;*/
+    var sections = [];
+
+    $('.list_block > li > a').each(function () {
+        var sectionItem = $(this);
+        sections.push({
+            'name': sectionItem.text(),
+            'url': urla(sectionItem.attr('href'))
+        });
+    });
+
+    data.sections = sections.reverse();
+    return JSON.stringify(data);
+}
+
+function section_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+
+    var scriptText = $('body > script').eq(0).text();
+    var z_yurl = scriptText.match(/(?:z_yurl=')([^']+)(?:';)/)[1];
+    var listText = scriptText.match(/(?:z_img=')([^']+)(?:';)/)[1];
+    var play = scriptText.match(/(?:play=')([^']+)(?:';)/)[1];
+    list = JSON.parse(listText);
+    list = list.map(function(imgurl) {
+
+        var getPath = function(url) {
+            return url.replace(/http:\/\//, "").replace(/https:\/\//, "");
+        }
+
+        if (imgurl.indexOf('http') > -1) {
+            imgurl = '/pic-' + play + '/' + getPath(imgurl);
+        } else {
+            imgurl = z_yurl + imgurl;
+        }
+
+        /* fix host error of image url */
+        var urlStart = imgurl.lastIndexOf("https://");
+        if (urlStart > 0) {
+            imgurl = imgurl.substr(urlStart);
+        }
+
+        return urla(imgurl, mainHost);
+    });
+
+    return JSON.stringify(list);
+}
+
+            ]]>
+        </code>
+    </script>
+</sited>

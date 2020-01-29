@@ -1,0 +1,212 @@
+<!--?xml version="1.0" encoding="UTF-8" ?-->
+<sited ver="2" debug="1" engine="34" schema="1">
+    <meta>
+    <ua></ua>
+    <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
+    <title>动漫星空</title>
+    <author>Yinr</author>
+    <contact>yinr@yinr.cc</contact>
+    <intro>[图片] 动漫星空图库频道主要提供动漫壁纸，动漫高清壁纸，动漫桌面壁纸，动漫手机壁纸，以及动漫角色 Cosplay，声优写真。</intro>
+    <alert></alert>
+    <url>https://acg.gamersky.com/pic/</url>
+    <expr>acg\.gamersky\.com\/pic|so.gamersky.com\/all\/pic</expr>
+    <logo>https://acg.gamersky.com/favicon.ico</logo>
+    <encode>UTF-8</encode>
+    <about title="关于" mail="yinr@yinr.cc">
+        <item title="插件开发者：@Yinr" />
+        <item />
+        <item txt="点击右下角或复制邮箱反馈问题" />
+        <item url="yinr@yinr.cc" />
+    </about>
+    </meta>
+    <main dtype="4" btag="图片">
+        <home>
+            <hots cache="1d" showImg="0" method="get"
+                  title="人气壁纸"
+                  parse="hots_parse"
+                  url="https://acg.gamersky.com/pic/" >
+                <updates parse="updates_parse" />
+            </hots>
+
+            <updates cache="1d" showImg="0" title="最近更新" />
+
+            <tags title="分类">
+                <item title="电脑壁纸" url="20450" />
+                <item title="手机壁纸" url="20451" />
+                <item title="动漫美图" url="20395" />
+                <item title="Cosplay" url="20397" />
+                <item title="精美写真" url="20396" />
+            </tags>
+        </home>
+
+        <search cache="0" method="get" parse="search_parse" url="http://so.gamersky.com/all/pic?s=@key&amp;p=@page" />
+
+        <tag cache="10m" showImg="1" method="get" buildUrl="tag_buildUrl" parse="tag_parse" />
+
+        <book cache="1d" method="get" parseUrl="book_parseUrl" parse="book_parse" />
+
+    </main>
+    <script>
+        <require>
+            <item url="http://sited.noear.org/addin/js/cheerio.js" lib="cheerio" />
+        </require>
+        <code>
+            <![CDATA[
+var mainHost = "https://acg.gamersky.com/pic/";
+
+function urla(u, host) {
+    host = host || mainHost;
+    host = host.replace(/\/$/, '');
+
+    if (u.indexOf("http") < 0) {
+        if (u.substr(0, 2) != '//') {
+            if (u.substr(0, 1) != '/') u = host + '/' + u;
+            else u = host + u;
+        } else {
+            u = 'http:' + u;
+        }
+    }
+    return encodeURI(u);
+}
+
+function hots_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+
+    $('div.Mid1_R > ul.MRtxt').eq(0).find('div.tit > a').each(function () {
+        var post = $(this);
+        var bm = {};
+        bm.name = post.text();
+        bm.url = urla(post.attr('href'));
+        bm.logo = "";
+        list.push(bm);
+    });
+
+    return JSON.stringify(list);
+}
+
+function updates_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+
+    var formatTime = function(timeString) {
+        if (timeString.length == 5) {
+            var year = (new Date()).getFullYear();
+            return year.toString() + '-' + timeString;
+        } else {
+            /* TODO: More checking needed */
+            return timeString;
+        }
+    };
+
+    $('div.Mid1_R > ul.MRtxt').eq(1).children('li').each(function () {
+        var post = $(this);
+        var post_title = post.find('a');
+        var bm = {};
+        bm.name = post_title.text();
+        bm.url = urla(post_title.attr('href'));
+        bm.logo = "";
+        bm.newSection = "";
+        bm.updateTime = post.children('.time').text();
+        list.push(bm);
+    });
+
+    return JSON.stringify(list);
+}
+
+function tag_buildUrl(url, key, page) {
+    var get_param = encodeURIComponent( "{" );
+    get_param += encodeURIComponent( ' "type": "updatenodelabel",' );
+    get_param += encodeURIComponent( ' "nodeId": ' + url + ',' );
+    get_param += encodeURIComponent( ' "isNodeId": true,' );
+    get_param += encodeURIComponent( ' "page": ' ) + "@page" + encodeURIComponent( '}' );
+
+    return "https://db2.gamersky.com/LabelJsonpAjax.aspx?jsondata=" + get_param;
+}
+
+function tag_parse(url, html) {
+    var htmlProcess = html.replace(/\\/g, '');
+    var htmlText = htmlProcess.slice(htmlProcess.indexOf("\"body\":\"") + 8, -3);
+    var $ = cheerio.load(htmlText);
+    var list = [];
+
+    $('li a').each(function () {
+        var book = $(this);
+        var bm = {};
+        var book_title = book.attr('title');
+        bm.name = book.attr('title');
+        bm.url = urla(book.attr('href'));
+        bm.logo = book.children('img').attr('src');
+        bm.author = "";
+        bm.status = "";
+        bm.newSection = "";
+        bm.updateTime = "";
+        list.push(bm);
+    });
+
+    return JSON.stringify(list);
+}
+
+function search_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+
+    $('ul.pictxt > li > a').each(function () {
+        var post = $(this);
+        var bm = {};
+        bm.name = post.text();
+        bm.url = urla(post.attr('href'));
+        bm.logo = post.children('img').attr('src');
+        bm.author = "";
+        bm.status = "";
+        bm.newSection = "";
+        bm.updateTime = "";
+        bm.btag = "图片";
+        list.push(bm);
+    });
+
+    return JSON.stringify(list);
+}
+
+function book_parseUrl(url, html) {
+    var $ = cheerio.load(html);
+    var urlArray = [];
+    var urlNext = "CALL::";
+
+    $('.page_css a').each(function () {
+        var page = $(this);
+        if (/^[0-9]+$/.test(page.text())) {
+            urlArray.push(page.attr('href'));
+        } else if ("后十页" === page.text()) {
+            urlNext += page.attr('href');
+        }
+    });
+
+    urlArray = urlArray.filter(function(v, i, a) {
+        return a.indexOf(v) === i;
+    }).sort();
+
+    if(urlNext.length > 6) {
+        urlArray.push(urlNext);
+    }
+
+    return urlArray.join(';');
+}
+
+function book_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+
+    $('div.MidL_con > p a > img').each(function () {
+        var url = $(this).parent().attr('href');
+        url = url.substring(url.lastIndexOf("http"));
+        list.push(urla(url));
+    });
+
+    return JSON.stringify(list);
+}
+
+            ]]>
+        </code>
+    </script>
+</sited>

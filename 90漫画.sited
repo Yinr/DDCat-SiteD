@@ -1,0 +1,339 @@
+<!--?xml version="1.0" encoding="UTF-8" ?-->
+<sited ver="4" debug="1" engine="34" schema="1">
+    <meta>
+    <ua></ua>
+    <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
+    <title>90漫画</title>
+    <author>Yinr</author>
+    <contact>yinr@yinr.cc</contact>
+    <intro>[漫画] 90漫画网</intro>
+    <alert></alert>
+    <url>http://m.90mh.com/</url>
+    <expr>\.90mh\.com</expr>
+    <logo>http://m.90mh.com/favicon.ico</logo>
+    <encode>UTF-8</encode>
+    <about title="关于" mail="yinr@yinr.cc">
+        <item title="插件开发者：@Yinr" />
+        <item />
+        <item txt="点击右下角或复制邮箱反馈问题" />
+        <item url="yinr@yinr.cc" />
+    </about>
+    </meta>
+    <main dtype="1" btag="漫画">
+        <home>
+            <hots cache="1d" showImg="1" w="3" h="4" method="get" title="排行"
+                  parse="hots_parse"
+                  url="http://m.90mh.com/rank/" />
+            <updates cache="1d" showImg="1" w="3" h="4" method="get" title="更新"
+                     parse="updates_parse"
+                     url="http://m.90mh.com/update/" />
+            <tags title="分类">
+                <item group="按类型" title="全部" url="http://m.90mh.com/list_@page/" />
+                    <item title="儿童漫画" url="http://m.90mh.com/list/ertong/@page/" />
+                    <item title="少年漫画" url="http://m.90mh.com/list/shaonian/@page/" />
+                    <item title="少女漫画" url="http://m.90mh.com/list/shaonv/@page/" />
+                    <item title="青年漫画" url="http://m.90mh.com/list/qingnian/@page/" />
+
+                <item group="按地区" title="全部" url="http://m.90mh.com/list_@page/" />
+                    <item title="日本" url="http://m.90mh.com/list/riben/@page/" />
+                    <item title="大陆" url="http://m.90mh.com/list/dalu/@page/" />
+                    <item title="香港" url="http://m.90mh.com/list/hongkong/@page/" />
+                    <item title="台湾" url="http://m.90mh.com/list/taiwan/@page/" />
+                    <item title="欧美" url="http://m.90mh.com/list/oumei/@page/" />
+                    <item title="韩国" url="http://m.90mh.com/list/hanguo/@page/" />
+                    <item title="其他" url="http://m.90mh.com/list/qita/@page/" />
+
+                <item group="按剧情" title="全部" url="http://m.90mh.com/list_@page/" />
+                    <item title="爱情" url="http://m.90mh.com/list/aiqing/@page/" />
+                    <item title="魔法" url="http://m.90mh.com/list/mofa/@page/" />
+                    <item title="校园" url="http://m.90mh.com/list/xiaoyuan/@page/" />
+                    <item title="恐怖" url="http://m.90mh.com/list/kongbu/@page/" />
+                    <item title="脑洞" url="http://m.90mh.com/list/naodong/@page/" />
+                    <item title="灵异" url="http://m.90mh.com/list/lingyi/@page/" />
+                    <item title="恋爱" url="http://m.90mh.com/list/lianai/@page/" />
+                    <item title="虐心" url="http://m.90mh.com/list/nuexin/@page/" />
+                    <item title="奇幻" url="http://m.90mh.com/list/qihuan/@page/" />
+                    <item title="彩虹" url="http://m.90mh.com/list/caihong/@page/" />
+                    <item title="都市" url="http://m.90mh.com/list/dushi/@page/" />
+                    <item title="神鬼" url="http://m.90mh.com/list/shengui/@page/" />
+                    <item title="搞笑" url="http://m.90mh.com/list/gaoxiao/@page/" />
+                    <item title="战争" url="http://m.90mh.com/list/zhanzheng/@page/" />
+                    <item title="武侠" url="http://m.90mh.com/list/wuxia/@page/" />
+                    <item title="热血" url="http://m.90mh.com/list/rexue/@page/" />
+                    <item title="冒险" url="http://m.90mh.com/list/maoxian/@page/" />
+                    <item title="欢乐向" url="http://m.90mh.com/list/huanlexiang/@page/" />
+                    <item title="格斗" url="http://m.90mh.com/list/gedou/@page/" />
+                    <item title="爆笑" url="http://m.90mh.com/list/baoxiao/@page/" />
+                    <item title="萌系" url="http://m.90mh.com/list/mengji/@page/" />
+                    <item title="机甲" url="http://m.90mh.com/list/jijia/@page/" />
+                    <item title="魔幻" url="http://m.90mh.com/list/mohuan/@page/" />
+                    <item title="玄幻" url="http://m.90mh.com/list/xuanhuan/@page/" />
+                    <item title="纯爱" url="http://m.90mh.com/list/chunai/@page/" />
+                    <item title="唯美" url="http://m.90mh.com/list/weimei/@page/" />
+                    <item title="科幻" url="http://m.90mh.com/list/kehuan/@page/" />
+                    <item title="励志" url="http://m.90mh.com/list/lizhi/@page/" />
+                    <item title="其它" url="http://m.90mh.com/list/qita/@page/" />
+                    <item title="古风" url="http://m.90mh.com/list/gufeng/@page/" />
+                    <item title="治愈" url="http://m.90mh.com/list/zhiyu/@page/" />
+                    <item title="震撼" url="http://m.90mh.com/list/zhenhan/@page/" />
+                    <item title="穿越" url="http://m.90mh.com/list/chuanyue/@page/" />
+                    <item title="青春" url="http://m.90mh.com/list/qingchun/@page/" />
+                    <item title="剧情" url="http://m.90mh.com/list/juqing/@page/" />
+                    <item title="美食" url="http://m.90mh.com/list/meishi/@page/" />
+                    <item title="竞技" url="http://m.90mh.com/list/jingji/@page/" />
+                    <item title="悬疑" url="http://m.90mh.com/list/xuanyi/@page/" />
+                    <item title="推理" url="http://m.90mh.com/list/tuili/@page/" />
+                    <item title="幻想" url="http://m.90mh.com/list/huanxiang/@page/" />
+                    <item title="神魔" url="http://m.90mh.com/list/shenmo/@page/" />
+                    <item title="生活" url="http://m.90mh.com/list/shenghuo/@page/" />
+                    <item title="动作" url="http://m.90mh.com/list/dongzuo/@page/" />
+                    <item title="耽美" url="http://m.90mh.com/list/danmei/@page/" />
+                    <item title="历史" url="http://m.90mh.com/list/lishi/@page/" />
+                    <item title="运动" url="http://m.90mh.com/list/yundong/@page/" />
+                    <item title="体育" url="http://m.90mh.com/list/tiyu/@page/" />
+                    <item title="职场" url="http://m.90mh.com/list/zhichang/@page/" />
+                    <item title="恶搞" url="http://m.90mh.com/list/egao/@page/" />
+                    <item title="后宫" url="http://m.90mh.com/list/hougong/@page/" />
+                    <item title="百合" url="http://m.90mh.com/list/baihe/@page/" />
+                    <item title="社会" url="http://m.90mh.com/list/shehui/@page/" />
+                    <item title="机战" url="http://m.90mh.com/list/jizhan/@page/" />
+                    <item title="其他" url="http://m.90mh.com/list/qita2/@page/" />
+                    <item title="伪娘" url="http://m.90mh.com/list/weiniang/@page/" />
+                    <item title="性转换" url="http://m.90mh.com/list/xingzhuanhuan/@page/" />
+                    <item title="霸总" url="http://m.90mh.com/list/bazong/@page/" />
+                    <item title="漫改" url="http://m.90mh.com/list/mangai/@page/" />
+                    <item title="萝莉" url="http://m.90mh.com/list/luoli/@page/" />
+                    <item title="吸血" url="http://m.90mh.com/list/xixie/@page/" />
+                    <item title="侦探" url="http://m.90mh.com/list/zhentan/@page/" />
+                    <item title="少女" url="http://m.90mh.com/list/shaonv2/@page/" />
+                    <item title="杂志" url="http://m.90mh.com/list/zazhi/@page/" />
+                    <item title="日更" url="http://m.90mh.com/list/rigeng/@page/" />
+                    <item title="诱惑" url="http://m.90mh.com/list/youhuo/@page/" />
+                    <item title="音乐舞蹈" url="http://m.90mh.com/list/yinyuewudao/@page/" />
+                    <item title="老师" url="http://m.90mh.com/list/laoshi/@page/" />
+                    <item title="轻小说" url="http://m.90mh.com/list/qingxiaoshuo/@page/" />
+                    <item title="宅男腐女" url="http://m.90mh.com/list/zhainanfunv/@page/" />
+                    <item title="节操" url="http://m.90mh.com/list/jiecao/@page/" />
+                    <item title="战斗" url="http://m.90mh.com/list/zhandou/@page/" />
+                    <item title="战斗" url="http://m.90mh.com/list/zhandou3/@page/" />
+                    <item title="少年" url="http://m.90mh.com/list/shaonian/@page/" />
+                    <item title="四格" url="http://m.90mh.com/list/sige/@page/" />
+                    <item title="颜艺" url="http://m.90mh.com/list/yanyi/@page/" />
+                    <item title="卖肉" url="http://m.90mh.com/list/mairou/@page/" />
+                    <item title="热血" url="http://m.90mh.com/list/rexue3/@page/" />
+                    <item title="日常" url="http://m.90mh.com/list/richang/@page/" />
+                    <item title="西方魔幻" url="http://m.90mh.com/list/xifangmohuan/@page/" />
+                    <item title="宅系" url="http://m.90mh.com/list/zhaixi/@page/" />
+                    <item title="高清单行" url="http://m.90mh.com/list/gaoqingdanxing/@page/" />
+                    <item title="东方" url="http://m.90mh.com/list/dongfang/@page/" />
+                    <item title="限制级" url="http://m.90mh.com/list/xianzhiji/@page/" />
+                    <item title="同人" url="http://m.90mh.com/list/tongren/@page/" />
+                    <item title="惊悚" url="http://m.90mh.com/list/jingsong/@page/" />
+                    <item title="舰娘" url="http://m.90mh.com/list/jianniang/@page/" />
+                    <item title="绅士" url="http://m.90mh.com/list/shenshi/@page/" />
+
+                <item group="按字母" title="全部" url="http://m.90mh.com/list_@page/" />
+                    <item title="A" url="http://m.90mh.com/list/a/@page/" />
+                    <item title="B" url="http://m.90mh.com/list/b/@page/" />
+                    <item title="C" url="http://m.90mh.com/list/c/@page/" />
+                    <item title="D" url="http://m.90mh.com/list/d/@page/" />
+                    <item title="E" url="http://m.90mh.com/list/e/@page/" />
+                    <item title="F" url="http://m.90mh.com/list/f/@page/" />
+                    <item title="G" url="http://m.90mh.com/list/g/@page/" />
+                    <item title="H" url="http://m.90mh.com/list/h/@page/" />
+                    <item title="I" url="http://m.90mh.com/list/i/@page/" />
+                    <item title="J" url="http://m.90mh.com/list/j/@page/" />
+                    <item title="K" url="http://m.90mh.com/list/k/@page/" />
+                    <item title="L" url="http://m.90mh.com/list/l/@page/" />
+                    <item title="M" url="http://m.90mh.com/list/m/@page/" />
+                    <item title="N" url="http://m.90mh.com/list/n/@page/" />
+                    <item title="O" url="http://m.90mh.com/list/o/@page/" />
+                    <item title="P" url="http://m.90mh.com/list/p/@page/" />
+                    <item title="Q" url="http://m.90mh.com/list/q/@page/" />
+                    <item title="R" url="http://m.90mh.com/list/r/@page/" />
+                    <item title="S" url="http://m.90mh.com/list/s/@page/" />
+                    <item title="T" url="http://m.90mh.com/list/t/@page/" />
+                    <item title="U" url="http://m.90mh.com/list/u/@page/" />
+                    <item title="V" url="http://m.90mh.com/list/v/@page/" />
+                    <item title="W" url="http://m.90mh.com/list/w/@page/" />
+                    <item title="X" url="http://m.90mh.com/list/x/@page/" />
+                    <item title="Y" url="http://m.90mh.com/list/y/@page/" />
+                    <item title="Z" url="http://m.90mh.com/list/z/@page/" />
+                    <item title="其他" url="http://m.90mh.com/list/1/" />
+
+                <item group="按进度" title="全部" url="http://m.90mh.com/list_@page/" />
+                    <item title="已完结" url="http://m.90mh.com/list/wanjie/@page/" />
+                    <item title="连载中" url="http://m.90mh.com/list/lianzai/@page/" />
+
+                <item group="国产漫画" title="国产" url="http://m.90mh.com/list/guochanmanhua/@page/" />
+            </tags>
+        </home>
+
+        <search cache="0" method="get" parse="search_parse" url="http://m.90mh.com/search/?keywords=@key" />
+
+        <tag cache="10m" showImg="1" w="3" h="4" method="get" parse="tag_parse" />
+
+        <book cache="1d" method="get" buildUrl="buildUrl" parse="book_parse" />
+
+        <section cache="1d" method="get" header="cookie $$ referer"
+                 parseUrl="section_parseUrl" parse="section_parse" />
+    </main>
+    <script>
+        <require>
+            <item url="http://sited.noear.org/addin/js/cheerio.js" lib="cheerio" />
+        </require>
+        <code>
+            <![CDATA[
+function urla(u) {
+    var host = "http://m.90mh.com";
+    if (u.indexOf("http") < 0) {
+        if (u.substr(0, 2) != '//') {
+            if (u.substr(0, 1) != '/') u = host + '/' + u;
+            else u = host + u;
+        } else {
+            u = 'http:' + u;
+        }
+    }
+    return encodeURI(u);
+}
+
+function hots_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+    $('div.itemBox').each(function () {
+        var book = $(this);
+        var book_title = book.find('.title');
+        var bm = {};
+        bm.name = book_title.text();
+        bm.url = urla(book_title.attr('href'));
+        bm.logo = book.find('mip-img').attr('src');
+        list.push(bm);
+    });
+    return JSON.stringify(list);
+}
+
+function updates_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+    $('div.itemBox').each(function () {
+        var book = $(this);
+        var book_title = book.find('.title');
+        var bm = {};
+        bm.name = book_title.text();
+        bm.url = urla(book_title.attr('href'));
+        bm.logo = book.find('mip-img').attr('src');
+        bm.newSection = book.find('.coll').text();
+        bm.updateTime = book.find('.date').text().substr(0, 10);
+        list.push(bm);
+    });
+    return JSON.stringify(list);
+}
+
+function tag_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+    $('li.list-comic').each(function () {
+        var book = $(this);
+        var bm = {};
+        var book_title = book.children('.txtA');
+        bm.name = book_title.text();
+        bm.url = urla(book_title.attr('href'));
+        bm.logo = book.find('mip-img').attr('src');
+        bm.author = "";
+        bm.status = "";
+        bm.newSection = book.children('.info').children('a').text();
+        bm.updateTime = "";
+        list.push(bm);
+    });
+    return JSON.stringify(list);
+}
+
+function search_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+    $('.itemBox').each(function () {
+        var book = $(this);
+        var bm = {};
+        var book_title = book.find('.title');
+        bm.name = book_title.text();
+        bm.url = urla(book_title.attr('href'));
+        bm.logo = book.find('mip-img').attr('src');
+        bm.author = book.find('.txtItme').eq(0).text();
+        bm.status = "";
+        bm.newSection = book.children('.coll').text();
+        bm.updateTime = book.find('span.date').text().substr(0,10);
+        bm.btag = "漫画";
+        list.push(bm);
+    });
+    return JSON.stringify(list);
+}
+
+function buildUrl(url) {
+    return url.replace(/^http.+?\/\/[^\/]+/i, 'http://m.90mh.com');
+}
+
+function book_parse(url, html) {
+    var $ = cheerio.load(html);
+    var data = {};
+
+    data.name = $('.title').text();
+    data.author = $('dl.pic_zi:nth-child(3) > dd > a').text();
+    data.intro = $('.txtDesc').text().replace(/简介：|\[\-折叠\]/g, '');
+    data.logo = $('#Cover img').attr('src');
+    data.updateTime = $('dl.pic_zi:nth-child(5) > dd').text();
+    /* data.isSectionsAsc = 1; */
+    var sections = [];
+
+    var sectionGroupCount = $('#list_block .title1_1').length;
+    $('#list_block .list').each(function () {
+        var list_group = $(this);
+        if (sectionGroupCount > 1) {
+            sections.push({
+                'name': list_group.prev().children('h3').text(),
+                'url': ''
+            });
+        }
+        list_group.find('li > a').each(function () {
+            var list_item = $(this);
+            sections.push({
+                'name': list_item.children('span').text(),
+                'url': list_item.attr('href')
+            });
+        });
+    });
+
+    data.sections = sections.reverse();
+    /* data.sections = sections; */
+    return JSON.stringify(data);
+}
+
+function section_parseUrl(url, html) {
+    var $ = cheerio.load(html);
+    var urls = url;
+
+    var imgCount = parseInt($('#k_total').text());
+    var baseUrl = url.replace(/\.html$/, '');
+
+    for (i = 2; i <= imgCount; i++) {
+        var tmpUrl = baseUrl + '-' + i + '.html';
+        urls = urls + ';' + tmpUrl;
+    }
+
+    return urls;
+}
+
+function section_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+
+    var container = $('.UnderPage > div').eq(2);
+    list.push(container.find('mip-img').attr('src'));
+
+    return JSON.stringify(list);
+}
+
+            ]]>
+        </code>
+
+    </script>
+</sited>
