@@ -1,0 +1,278 @@
+<!--?xml version="1.0" encoding="UTF-8" ?-->
+<sited ver="1" debug="1" engine="34" schema="1">
+<meta>
+    <ua></ua>
+    <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
+    <title>奇奇动漫</title>
+    <author>Yinr</author>
+    <contact>yinr@yinr.cc</contact>
+    <intro>[动漫] 奇奇动漫 - 好看的日本动漫,国产动画片大全,国语动漫,粤语动漫</intro>
+    <alert></alert>
+    <url>http://www.qiqidongman.com/</url>
+    <expr>\.qiqidongman\.com</expr>
+    <logo></logo>
+    <encode>UTF-8</encode>
+    <about title="关于" mail="yinr@yinr.cc">
+        <item title="插件开发者：@Yinr" />
+        <item />
+        <item txt="点击右下角或复制邮箱反馈问题" />
+        <item url="yinr@yinr.cc" />
+    </about>
+</meta>
+<main dtype="3" btag="动画">
+    <home>
+        <hots cache="1d" showImg="1" w="3" h="4" method="get"
+                title="热门推荐"
+                parse="hots_parse"
+                url="http://www.qiqidongman.com/" >
+            <updates parse="updates_parse" />
+            <tags parse="tags_parse" />
+        </hots>
+        <updates cache="1d" showImg="0" title="更新榜" />
+        <tags cache="1d" title="分类" />
+    </home>
+
+    <search cache="0" header="cookie $$ referer"
+            method="post" args="wd=@key" parse="list_parse"
+            url="http://www.qiqidongman.com/index.php?s=vod-search" />
+
+    <tag cache="10m" showImg="1" header="cookie $$ referer"
+            method="get" parse="list_parse" />
+
+    <book cache="1d" header="cookie $$ referer"
+            method="get" parse="book_parse" />
+
+    <section cache="1d" method="get" parse="section_parse" />
+</main>
+<script>
+    <require>
+        <item url="http://sited.noear.org/addin/js/cheerio.js" lib="cheerio" />
+        <item url="http://sited.noear.org/addin/js/base64.js" lib="base64" />
+    </require>
+    <code>
+        <![CDATA[
+var mainHost = "http://www.qiqidongman.com";
+
+function urla(url, host) {
+    host = host || mainHost;
+    host = host.replace(/\/$/, '');
+
+    var u = decodeURI(url);
+
+    if (u.indexOf("http") < 0) {
+        if (u.substr(0, 2) != '//') {
+            if (u.substr(0, 1) != '/') u = host + '/' + u;
+            else u = host + u;
+        } else {
+            u = 'http:' + u;
+        }
+    }
+    return encodeURI(u);
+}
+
+function hots_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+
+    $('#recomCont li').each(function () {
+        var anime = $(this);
+        var anime_img = anime.find('img');
+        var am = {};
+        am.name = anime_img.attr('alt');
+        am.url = urla(anime_img.parent().attr('href'));
+        am.logo = urla(anime_img.attr('data-src'));
+        list.push(am);
+    });
+
+    return JSON.stringify(list);
+}
+
+function updates_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+
+    $('#slider div.contTb ul:nth-child(1) li').each(function () {
+        var anime = $(this);
+        var anime_title = anime.children('a');
+        var am = {};
+        am.name = anime_title.text();
+        am.url = urla(anime_title.attr('href'));
+        am.newSection = anime.children('span').text();
+        am.updateTime = anime.find('font').text();
+        list.push(am);
+    });
+
+    return JSON.stringify(list);
+}
+
+function tags_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+
+    $('div.section.indexCatNav dd').each(function () {
+        var tags = $(this);
+        var group = tags.prev().text();
+        tags.children('a').each(function(i, elem) {
+            var tag = $(this);
+            var tg = {};
+            if (i === 0) {
+                tg.group = group;
+            }
+            tg.title = tag.text();
+            tg.url = urla(tag.attr("href").replace('.html', '-p-@page.html'));
+            list.push(tg);
+        })
+    });
+
+    return JSON.stringify(list);
+}
+
+function list_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+
+    $('#LIST li a').each(function () {
+        var anime = $(this);
+        var am = {};
+        var anime_title = anime.children('.txtA');
+        am.name = anime.attr('title');
+        am.url = urla(anime.attr('href'));
+        am.logo = urla(anime.children('img').attr('data-src'));
+        am.author = "";
+        am.status = "";
+        am.newSection = anime.next('div.info').children('.date').text();
+        am.updateTime = anime.next('div.info').find('font').text();
+        am.btag = "动画";
+        list.push(am);
+    });
+
+    return JSON.stringify(list);
+}
+
+function book_parse(url, html) {
+    var $ = cheerio.load(html);
+    var data = {};
+
+    data.name = $('#DESC-info h1').text();
+    data.author = '';
+    data.intro = $('#descCont > p').text();
+    data.logo = urla($('#DESC div.DESC-img img').attr('src'));
+    var updateInfo = $('#DESC-info').text().match(/(\d{4}-\d{2}-\d{2})更新/);
+    data.updateTime = updateInfo ? updateInfo[1] : '';
+    data.isSectionsAsc = 0;
+    var sections = [];
+
+    var sectionGroupCount = $('#playList div.selectMode div.tb').length;
+    $('#playList div.selectMode div.tb').each(function (idx, elem) {
+        var list_group = $(this);
+        if (sectionGroupCount > 1) {
+            var groupName = list_group.prev('div.th').children('a').text();
+            sections.push({
+                'name': groupName + ' (源：' + (idx + 1) + ')',
+                'url': ''
+            });
+        }
+        list_group.children('a').each(function () {
+            var list_item = $(this);
+            sections.push({
+                'name': list_item.contents().last().text(),
+                'url': urla(list_item.attr('href'))
+            });
+        });
+    });
+
+    data.sections = sections.reverse();
+    return JSON.stringify(data);
+}
+
+function section_parse(url, html) {
+    var $ = cheerio.load(html);
+    var base64 = new Base64();
+    var list = [];
+
+    var utf8to16 = function(str) {
+        var out, i, len, c;
+        var char2, char3;
+
+        out = "";
+        len = str.length;
+        i = 0;
+        while (i < len) {
+            c = str.charCodeAt(i++);
+            switch (c >> 4) {
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                    /* // 0xxxxxxx */
+                    out += str.charAt(i - 1);
+                    break;
+                case 12:
+                case 13:
+                    /* // 110x xxxx   10xx xxxx */
+                    char2 = str.charCodeAt(i++);
+                    out += String.fromCharCode(((c & 0x1F) << 6) | (char2 & 0x3F));
+                    break;
+                case 14:
+                    /* // 1110 xxxx  10xx xxxx  10xx xxxx */
+                    char2 = str.charCodeAt(i++);
+                    char3 = str.charCodeAt(i++);
+                    out += String.fromCharCode(((c & 0x0F) << 12) | ((char2 & 0x3F) << 6) | ((char3 & 0x3F) << 0));
+                    break;
+            }
+        }
+
+        return out;
+    };
+    var str_decode = function(str) {
+        return utf8to16(base64.decode(str));
+    };
+
+    var strCode = $('head').html().match(/str_decode\("(.*)"\)/)[1];
+    var um = {};
+    um.url = urla(str_decode(strCode));
+    typeMatch = um.url.match(/(?:\.([^/#.]{2,4}))?#([^#]+)$/);
+    um.type = typeMatch[1] || typeMatch[2] || '';
+    switch (um.type) {
+        case 'flv':
+            um.mime = 'video/x-flv';
+            break;
+        case 'mp4':
+            um.mime = 'video/mp4';
+            break;
+        case 'm3u8':
+            um.mime = 'application/x-mpegURL';
+            break;
+        case 'mov':
+            um.mime = 'video/quicktime';
+            break;
+        case 'rmvb':
+            um.mime = 'video/vnd.rn-realvideo';
+            break;
+        case 'mpeg':
+        case 'mpg':
+            um.mime = 'video/mpeg';
+            break;
+        case 'youku':
+            var youkuId = um.url.match(/\/([^/#]+)#[^#]+$/)[1];
+            print(youkuId);
+            um.url = 'https://v.youku.com/v_show/id_' + youkuId + '.html'
+            um.type = 'html';
+            um.mime = 'text/html';
+            break;
+        default:
+            um.mime = 'video/' + um.type;
+            break;
+    }
+    list.push(um);
+
+    return JSON.stringify(list);
+}
+        ]]>
+    </code>
+</script>
+</sited>
