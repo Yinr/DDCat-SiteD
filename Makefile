@@ -21,7 +21,6 @@ PORT = 80
 build: $(TARGETS)
 
 $(INDEX): $(OBJECTS) Makefile
-	# $$(ip -o addr show up primary scope global | head -1 | sed -E 's#.* inet (\S+)/[0-9]+ .*#\1#')
 	@INDEX_BASE_URL=$(INDEX_BASE_URL); \
 		INDEX_BASE_IP="$$(ip route get 8.8.8.8 | sed -nE '/8.8.8.8/s/.*src (\S+) .*/\1/p')"; \
 		tree -hrDCL 1 --prune \
