@@ -1,5 +1,5 @@
 <!--?xml version="1.0" encoding="UTF-8" ?-->
-<sited ver="5" debug="1" engine="34" schema="1">
+<sited ver="7" debug="1" engine="34" schema="1">
     <meta>
     <ua></ua>
     <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
@@ -157,7 +157,7 @@
 
         <tag cache="10m" showImg="1" w="3" h="4" method="get" parse="tag_parse" />
 
-        <book cache="1d" method="get" parse="book_parse" />
+        <book cache="1d" method="get" parse="book_parse" header="cookie $$ referer" />
 
         <section cache="1d" method="get" parse="section_parse" header="cookie $$ referer" />
     </main>
@@ -283,7 +283,7 @@ function book_parse(url, html) {
         });
     });
 
-    data.sections = sections.reverse();
+    data.sections = sections;
     return JSON.stringify(data);
 }
 
@@ -291,10 +291,11 @@ function section_parse(url, html) {
     var $ = cheerio.load(html);
     var list = [];
 
-    var scriptText = $('body > script').eq(0).text();
-    var z_yurl = scriptText.match(/(?:z_yurl=')([^']+)(?:';)/)[1];
-    var listText = scriptText.match(/(?:z_img=')([^']+)(?:';)/)[1];
-    var play = scriptText.match(/(?:play=')([^']+)(?:';)/)[1];
+    var scriptText = $('body > script').filter(function(i, el) {return $(el).text().length > 100}).eq(0).text();
+    var z_yurl = '', listText = '', play = '';
+    z_yurl = 'https://img.yaoyaoliao.com/';
+    listText = scriptText.match(/(?:z_img=')([^']+)(?:';)/)[1];
+    try {play = scriptText.match(/(?:play=')([^']+)(?:';)/)[1];} catch (e) {}
     list = JSON.parse(listText);
     list = list.map(function(imgurl) {
 
@@ -303,9 +304,9 @@ function section_parse(url, html) {
         }
 
         if (imgurl.indexOf('http') > -1) {
-            imgurl = '/pic-' + play + '/' + getPath(imgurl);
+            if (play) imgurl = '/pic-' + play + '/' + getPath(imgurl);
         } else {
-            imgurl = z_yurl + imgurl;
+            if (z_yurl) imgurl = z_yurl + imgurl;
         }
 
         /* fix host error of image url */
