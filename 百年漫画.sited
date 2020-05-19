@@ -1,5 +1,5 @@
 <!--?xml version="1.0" encoding="UTF-8" ?-->
-<sited ver="8" debug="1" engine="34" schema="1">
+<sited ver="9" debug="1" engine="34" schema="1">
     <meta>
     <ua></ua>
     <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
@@ -272,6 +272,13 @@ function book_parse(url, html) {
     data.intro = $('.tbox_js').text();
     data.logo = $('.img > mip-img').attr('src');
     data.updateTime = $('.act').text().substr(3,10);
+
+    if ($('.banquan').length > 0) {
+        print('由于版权原因，' + data.name + ' 已下架，请尝试搜索其他插件观看。');
+        data.sections = [{'name': '已下架，请尝试搜索其他插件观看。'}]
+        return JSON.stringify(data);
+    }
+
     /*data.isSectionsAsc = 1;*/
     var sections = [];
 
