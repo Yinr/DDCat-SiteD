@@ -1,5 +1,5 @@
 <!--?xml version="1.0" encoding="UTF-8" ?-->
-<sited ver="4" debug="1" engine="34" schema="1">
+<sited ver="5" debug="1" engine="34" schema="1">
     <meta>
     <ua></ua>
     <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
@@ -184,6 +184,8 @@
         </require>
         <code>
             <![CDATA[
+const LARGE_SEC_SPLIT = 3;
+
 function urla(u) {
     var host = "http://m.90mh.com";
     if (u.indexOf("http") < 0) {
@@ -295,10 +297,21 @@ function book_parse(url, html) {
         }
         list_group.find('li > a').each(function () {
             var list_item = $(this);
-            sections.push({
-                'name': list_item.children('span').text(),
-                'url': list_item.attr('href')
-            });
+            var this_name = list_item.children('span').text(),
+                this_url = list_item.attr('href');
+            if (this_name.match(/卷$/)) {
+                for (i = 1; i <= LARGE_SEC_SPLIT; i++) {
+                    sections.push({
+                        'name': this_name + '(' + i + ')',
+                        'url': this_url + '#' + i
+                    });
+                }
+            } else {
+                sections.push({
+                    'name': this_name,
+                    'url': this_url
+                });
+            }
         });
     });
 
@@ -309,14 +322,21 @@ function book_parse(url, html) {
 
 function section_parseUrl(url, html) {
     var $ = cheerio.load(html);
-    var urls = url;
+    var urls = url.replace(/#[0-9]+$/,'');
 
     var imgCount = parseInt($('#k_total').text());
-    var baseUrl = url.replace(/\.html$/, '');
+    var baseUrl = urls.replace(/\.html$/, '');
 
     for (i = 2; i <= imgCount; i++) {
         var tmpUrl = baseUrl + '-' + i + '.html';
         urls = urls + ';' + tmpUrl;
+    }
+
+    var split = url.match(/#([0-9]+)$/);
+    if (split) {
+        split = parseInt(split[1]);
+        var split_length = Math.ceil(imgCount / LARGE_SEC_SPLIT);
+        urls = urls.split(';').slice((split - 1) * split_length, split * split_length).join(';');
     }
 
     return urls;
