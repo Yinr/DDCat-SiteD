@@ -1,5 +1,5 @@
 <!--?xml version="1.0" encoding="UTF-8" ?-->
-<sited ver="6" debug="1" engine="34" schema="1">
+<sited ver="7" debug="1" engine="34" schema="1">
     <meta>
     <ua></ua>
     <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
@@ -190,7 +190,7 @@ function book_parse(url, html) {
 
 function section_parse(url, html) {
     var pid = html.match(/var qTcms_S_p_id="(\d+)";/)[1];
-    var imgHost = parseInt(pid) > 542724 ? "https://mhpic5.miyeye.cn" : "https://res.gezhengzhongyi.cn:20207";
+    var imgHost = parseInt(pid) > 542724 ? "https://mhpic5.miyeye.cn:20208" : "https://res.gezhengzhongyi.cn:20207";
     if(parseInt(pid) > 884998) imgHost = "https://mhpic88.miyeye.cn:20207";
 
     var urlTxt = (new Base64).decode(html.match(/var qTcms_S_m_murl_e="([^"]+)";/)[1]).split("$qingtiandy$");
