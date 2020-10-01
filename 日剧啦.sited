@@ -1,0 +1,279 @@
+<!--?xml version="1.0" encoding="UTF-8" ?-->
+<sited ver="1" debug="1" engine="34" schema="1">
+<meta>
+    <ua>Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36</ua>
+    <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
+    <title>日剧啦</title>
+    <author>Yinr</author>
+    <contact>yinr@yinr.cc</contact>
+    <intro>[动漫] 日剧啦提供最全的日剧在线观看，热播日剧大全以及日剧资料搜索，日本电视剧资讯和日本明星资讯！</intro>
+    <alert></alert>
+    <url>https://www.rijula.com/</url>
+    <expr>\.rijula\.(com|cc)</expr>
+    <logo>https://www.rijula.com/template/vfed/asset/img/favicon.png</logo>
+    <encode>UTF-8</encode>
+    <about title="关于" mail="yinr@yinr.cc">
+        <item title="插件开发者：@Yinr" />
+        <item />
+        <item txt="点击右下角或复制邮箱反馈问题" />
+        <item url="yinr@yinr.cc" />
+        <item />
+        <item txt="点击或扫码对[Yinr]支付宝打赏" expr="https://qr.alipay.com/tsx072676oy3djrgrp1hvcf" logo="https://cloud.yinr.cc/s/FjN52G3snrTqj8S/download" />
+        <item txt="扫码使用微信打赏" logo="https://cloud.yinr.cc/s/SkmGBzxkeZoXNGb/download" />
+    </about>
+</meta>
+<main dtype="3" btag="动画">
+    <home>
+        <hots cache="1d" showImg="1" w="2" h="3" method="get"
+                title="热门推荐"
+                parse="hots_parse"
+                url="https://www.rijula.com/"/>
+        <updates cache="1d" showImg="1" w="2" h="3" method="get"
+                title="最新视频"
+                parse="updates_parse"
+                url="https://www.rijula.com/label/news/"/>
+        <tags cache="1d" method="get"
+                title="分类"
+                parse="tags_parse"
+                url="https://www.rijula.com/vodshow/dongman-----------/"/>
+    </home>
+
+    <search cache="0" header="cookie $$ referer"
+            method="get" parse="search_parse"
+            url="https://www.rijula.com/index.php/vodsearch/@key----------@page---/"/>
+
+    <tag cache="10m" header="cookie $$ referer"
+            method="get" parse="tag_parse" />
+
+    <book cache="1d" header="cookie $$ referer"
+            method="get" parse="book_parse" />
+
+    <section cache="1d" method="get" parse="section_parse" header="cookie $$ referer"/>
+</main>
+<script>
+    <require>
+        <item url="http://sited.noear.org/addin/js/cheerio.js" lib="cheerio" />
+        <item url="http://sited.noear.org/addin/js/base64.js" lib="base64" />
+    </require>
+    <code>
+        <![CDATA[
+var mainHost = "https://www.rijula.com";
+
+function urla(url, host) {
+    host = host || mainHost;
+    host = host.replace(/\/$/, '');
+
+    var u = decodeURI(url);
+
+    if (u.indexOf("http") < 0) {
+        if (u.substr(0, 2) != '//') {
+            if (u.substr(0, 1) != '/') u = host + '/' + u;
+            else u = host + u;
+        } else {
+            u = 'https:' + u;
+        }
+    } else {
+        u = u.replace(/^http:/, "https:");
+    }
+    return encodeURI(u);
+}
+
+function hots_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+
+    $('li.fed-swip-slide a, .fed-list-home .fed-list-item').each(function () {
+        var anime = $(this);
+        var am = {};
+        if (anime.is('a')) {
+            am.name = anime.find('span.fed-swip-head').text();
+            am.url = urla(anime.attr('href'));
+            am.logo = urla(anime.attr('data-background'));
+        } else if (anime.is('li')) {
+            var anime_img = anime.children('a.fed-list-pics');
+            am.name = anime.children('a.fed-list-title').text();
+            am.url = urla(anime_img.attr('href'));
+            am.logo = urla(anime_img.attr('data-original'));
+        }
+        list.push(am);
+    });
+
+    return JSON.stringify(list);
+}
+
+function updates_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+
+    $('li.fed-list-item').each(function () {
+        var anime = $(this);
+        var anime_title = anime.children('a.fed-list-title');
+        var am = {};
+        am.name = anime_title.text();
+        am.url = urla(anime_title.attr('href'));
+        am.newSection = anime.find('span.fed-list-remarks').text();
+        am.updateTime = '';
+        am.logo = urla(anime.children('a.fed-list-pics').attr('data-original'));
+        list.push(am);
+    });
+
+    return JSON.stringify(list);
+}
+
+function tags_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+
+    var config = {};
+    $('div.fed-casc-list dl').each(function () {
+        var group = $(this);
+        var groupName = group.children('dt').text();
+        config[groupName] = group.children('dd').children('a').toArray().map(function(i) {
+            var tag = $(i);
+            var tg = {};
+            tg.title = tag.text();
+            tg.url = tag.attr("href");
+            if (groupName == '频道') return {title: tg.title, url: urla(tg.url)}
+            tg.url = tg.url.replace('dongman', '');
+            tg.url = tg.url.substring(0,tg.url.length-1).split('/').pop().replace(/-/g, '');
+            return tg;
+        });
+    });
+    config['频道'] = config['频道'].reverse();
+    for (i = 0; i < config['频道'].length; i++) {
+        var ch = config['频道'][i];
+        list.push({'group': ch.title + ' - 类型'});
+        for (j = 0; j < config['类型'].length; j++) {
+            var tg = config['类型'][j];
+            var url = urla(ch.url.replace('-----------', '---' + tg.url + '-----@page---'));
+            list.push({title: tg.title, url: url});
+        }
+        list.push({'group': ch.title + ' - 年代'});
+        for (j = 0; j < config['年代'].length; j++) {
+            var tg = config['年代'][j];
+            var url = urla(ch.url.replace('-----------', '--------@page---' + tg.url));
+            list.push({title: tg.title, url: url});
+        }
+    }
+
+    return JSON.stringify(list);
+}
+
+function tag_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+
+    $('li.fed-list-item').each(function () {
+        var anime = $(this);
+        var am = {};
+        var anime_title = anime.children('a.fed-list-title');
+        am.name = anime_title.text();
+        am.url = urla(anime_title.attr('href'));
+        am.logo = urla(anime.children('a.fed-list-pics').attr('data-original'));
+        am.author = anime.children('a.fed-list-desc').text();
+        am.status = '';
+        am.newSection = anime.find('span.fed-list-remarks').text().substring(3);
+        am.updateTime = '';
+        list.push(am);
+    });
+
+    return JSON.stringify(list);
+}
+
+function search_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+
+    $('dl.fed-deta-info').each(function () {
+        var anime = $(this);
+        var am = {};
+        var anime_title = anime.find('h1.fed-part-eone a');
+        am.name = anime_title.text();
+        am.url = urla(anime_title.attr('href'));
+        am.logo = urla(anime.children('a.fed-list-pics').attr('data-original'));
+        am.author = anime.children('ul.fed-part-rows li:nth-child(2)').text().substring(3);
+        am.status = '';
+        am.newSection = anime.find('span.fed-list-remarks').text().substring(3);
+        am.updateTime = '';
+        am.btag = "动画";
+        list.push(am);
+    });
+
+    return JSON.stringify(list);
+}
+
+function book_parse(url, html) {
+    var $ = cheerio.load(html);
+    var data = {};
+
+    data.name = $('.fed-deta-info .fed-deta-content h1.fed-part-eone a').text();
+    data.author = '';
+    data.intro = $('.fed-tabs-boxs .fed-tabs-item:nth-child(2) p').text().replace('</>','').trim();
+    data.logo = urla($('.fed-deta-info a.fed-list-pics').attr('data-original'));
+    var sections = [];
+
+    var sectionName = $('.fed-tabs-boxs .fed-drop-tops ul.fed-part-rows li a').toArray().map(function (i) {
+        return $(i).text();
+    });
+    var sectionGroupCount = sectionName.length;
+    $('.fed-drop-boxs.fed-drop-btms .fed-play-item').each(function (idx, elem) {
+        if (sectionGroupCount > 1) {
+            sections.push({
+                'name': sectionName[idx],
+                'url': ''
+            });
+        }
+        $(this).find('li a.fed-btns-info').each(function () {
+            var list_item = $(this);
+            sections.push({
+                'name': list_item.text(),
+                'url': urla(list_item.attr('href'))
+            });
+        });
+    });
+
+    data.sections = sections.reverse();
+    return JSON.stringify(data);
+}
+
+function section_parse(url, html) {
+    var $ = cheerio.load(html);
+    var base64 = new Base64();
+    var list = [];
+
+    var playCode = $('iframe.fed-play-iframe').attr('data-play').substring(3);
+    var um = {};
+    um.url = urla(base64.decode(playCode));
+    um.type = um.url.split('.').pop();
+    switch (um.type) {
+        case 'flv':
+            um.mime = 'video/x-flv';
+            break;
+        case 'mp4':
+            um.mime = 'video/mp4';
+            break;
+        case 'm3u8':
+            um.mime = 'application/x-mpegURL';
+            break;
+        case 'mov':
+            um.mime = 'video/quicktime';
+            break;
+        case 'rmvb':
+            um.mime = 'video/vnd.rn-realvideo';
+            break;
+        case 'mpeg':
+        case 'mpg':
+            um.mime = 'video/mpeg';
+            break;
+        default:
+            um.mime = 'video/' + um.type;
+            break;
+    }
+    list.push(um);
+
+    return JSON.stringify(list);
+}
+        ]]>
+    </code>
+</script>
+</sited>
