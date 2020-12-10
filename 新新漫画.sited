@@ -1,5 +1,5 @@
 <!--?xml version="1.0" encoding="UTF-8" ?-->
-<sited ver="1" debug="1" engine="34" schema="1">
+<sited ver="2" debug="1" engine="34" schema="1">
 <meta>
     <ua></ua>
     <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
@@ -47,8 +47,6 @@
         <![CDATA[
 var mainHost = 'https://m.77mh.co';
 var ImgSvrList = 'https://shcss.gdbyhtl.net/img_v1/cn_svr.aspx';
-
-var SiteD = {};
 
 function urla(url, host) {
     host = host || mainHost;
@@ -134,32 +132,31 @@ function book_parse(url, html) {
     return JSON.stringify(data);
 }
 
+var comic_url = '';
+var comic_size = 0;
+var img_list = [];
+
 function section_parseUrl(url, html) {
-    if (url.match(/m\.77mh\.co/)) {
-        var $ = cheerio.load(html);
-        var infoScript = $('script:contains("eval")').text();
-        eval(infoScript);
-        var cid = link_z.match(/\/colist_([0-9]+)\.html/)[1];
-        var coid_num = url.match(/\/([0-9]+)\.html/)[1];
-
-        SiteD.set('comic_url', url);
-        SiteD.set('comic_size', img_s.toString());
-
-        return 'CALL::' + ImgSvrList + '?z=' + atsvr + '&s=' + img_s + '&cid=' + cid + '&coid=' + coid_num;
-    } else {
-        var webpshow = 0;
-        eval(html);
-        SiteD.set('img_host', img_qianzso[parseInt(SiteD.get('comic_size'))]);
-        SiteD.set('img_webp', (webpshow === 1 ? '.webp' : ''));
-        return SiteD.get('comic_url');
-    }
-}
-
-function section_parse(url, html) {
     var $ = cheerio.load(html);
     var infoScript = $('script:contains("eval")').text();
     eval(infoScript);
-    var list = msg.split('|').map(function(i) {return SiteD.get('img_host') + i + SiteD.get('img_webp')});
+    var cid = link_z.match(/\/colist_([0-9]+)\.html/)[1];
+    var coid_num = url.match(/\/([0-9]+)\.html/)[1];
+
+    comic_url = url;
+    comic_size = img_s;
+    img_list = msg.split('|');
+
+    return ImgSvrList + '?z=' + atsvr + '&s=' + img_s + '&cid=' + cid + '&coid=' + coid_num;
+}
+
+function section_parse(url, html) {
+    var webpshow = 0;
+    eval(html);
+    var img_host = img_qianzso[comic_size];
+    var img_webp = webpshow === 1 ? '.webp' : '';
+
+    var list = img_list.map(function(i) {return img_host + i + img_webp});
 
     return JSON.stringify(list);
 }
