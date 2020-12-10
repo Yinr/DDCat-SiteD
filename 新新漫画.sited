@@ -1,0 +1,169 @@
+<!--?xml version="1.0" encoding="UTF-8" ?-->
+<sited ver="1" debug="1" engine="34" schema="1">
+<meta>
+    <ua></ua>
+    <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
+    <title>新新漫画</title>
+    <author>Yinr</author>
+    <contact>yinr@yinr.cc</contact>
+    <intro>[漫画] 集齐漫画资源相当丰富，只有你想不到的，没有看不到的，每天更新百部漫画。</intro>
+    <alert></alert>
+    <url>https://m.77mh.co/</url>
+    <expr>m\.77mh\.co</expr>
+    <logo>https://m.77mh.co/favicon.ico</logo>
+    <encode>UTF-8</encode>
+    <about title="关于" mail="yinr@yinr.cc">
+        <item title="插件开发者：@Yinr" />
+        <item />
+        <item txt="点击右下角或复制邮箱反馈问题" />
+        <item url="yinr@yinr.cc" />
+        <item />
+        <item txt="点击或扫码对[Yinr]支付宝打赏" expr="https://qr.alipay.com/tsx072676oy3djrgrp1hvcf" logo="https://cloud.yinr.cc/s/FjN52G3snrTqj8S/preview" />
+        <item txt="扫码使用微信打赏" logo="https://cloud.yinr.cc/s/SkmGBzxkeZoXNGb/preview" />
+    </about>
+</meta>
+<main dtype="1" btag="漫画">
+    <home>
+        <updates cache="1d" showImg="1" method="get"
+                    title="新上架"
+                    parse="tag_parse"
+                    url="https://m.77mh.co/new_coc.html" />
+        <tags cache="1d" title="分类" parse="tags_parse" url="https://m.77mh.co/index.html" />
+    </home>
+
+    <search cache="0" method="get" parse="tag_parse" url="https://so.77mh.co/m.php?k=@key&amp;p=@page" />
+
+    <tag cache="10m" showImg="1" method="get" parse="tag_parse" />
+
+    <book cache="1d" method="get" parse="book_parse" header="cookie $$ referer" />
+
+    <section cache="1d" method="get" parseUrl="section_parseUrl" parse="section_parse" header="cookie $$ referer" />
+</main>
+<script>
+    <require>
+        <item url="http://sited.noear.org/addin/js/cheerio.js" lib="cheerio" />
+    </require>
+    <code>
+        <![CDATA[
+var mainHost = 'https://m.77mh.co';
+var ImgSvrList = 'https://shcss.gdbyhtl.net/img_v1/cn_svr.aspx';
+
+var SiteD = {};
+
+function urla(url, host) {
+    host = host || mainHost;
+    host = host.replace(/\/$/, '');
+
+    var u = decodeURI(url);
+
+    if (u.indexOf("http") < 0) {
+        if (u.substr(0, 2) != '//') {
+            if (u.substr(0, 1) != '/') u = host + '/' + u;
+            else u = host + u;
+        } else {
+            u = 'http:' + u;
+        }
+    }
+    return encodeURI(u);
+}
+
+function tags_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+
+    list.push({'group': '按状态'});
+    $('nav.navs div.nav a').each(function () {
+        var item = $(this);
+        if (item.attr('href').match(/\/.+\/index.html$/)) {
+            list.push({'title': item.text(),
+                       'url': urla(item.attr('href').replace('.html', '_@page.html'))});
+        }
+    });
+    list.push({'group': '按类型'});
+    $('nav.navs div.navmenu a').each(function () {
+        var item = $(this);
+        list.push({'title': item.text(),
+                    'url': urla(item.attr('href').replace('.html', '_@page.html'))});
+    });
+
+    return JSON.stringify(list);
+}
+
+function tag_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+
+    $('section.main div.list ul > a').each(function () {
+        var book = $(this);
+        var bm = {};
+        bm.name = book.find('p.title').text();
+        bm.url = urla(book.attr('href'));
+        bm.logo = book.find('img').attr('src');
+        bm.author = book.find('p.author b').text();
+        bm.status = book.find('p.status').text().replace('状态：', '');
+        bm.newSection = book.children('.info').children('a').text();
+        bm.updateTime = book.find('p.uptime b').text().replace('时间：', '');
+        if (bm.updateTime.length === 8) bm.updateTime = '20' + bm.updateTime;
+        list.push(bm);
+    });
+
+    return JSON.stringify(list);
+}
+
+function book_parse(url, html) {
+    var $ = cheerio.load(html);
+    var data = {};
+
+    data.name = $('div.coc_info h1').text();
+    data.author = $('div.coc_info .author a').text();
+    data.intro = $('.intro').text();
+    data.logo = $('div.coc_info img.cover').attr('src');
+    data.updateTime = $('div.coc_info .update').text().replace('更新：', '');
+    data.isSectionsAsc = 0;
+    data.sections = [];
+
+    $('ul.chapter li a').each(function () {
+        var item = $(this);
+        data.sections.push({
+            'name': item.text(),
+            'url': urla(item.attr('href'))
+        });
+    });
+    if (data.sections.length === 0) data.sections.push({ 'name': '暂无章节' });
+
+    return JSON.stringify(data);
+}
+
+function section_parseUrl(url, html) {
+    if (url.match(/m\.77mh\.co/)) {
+        var $ = cheerio.load(html);
+        var infoScript = $('script:contains("eval")').text();
+        eval(infoScript);
+        var cid = link_z.match(/\/colist_([0-9]+)\.html/)[1];
+        var coid_num = url.match(/\/([0-9]+)\.html/)[1];
+
+        SiteD.set('comic_url', url);
+        SiteD.set('comic_size', img_s.toString());
+
+        return 'CALL::' + ImgSvrList + '?z=' + atsvr + '&s=' + img_s + '&cid=' + cid + '&coid=' + coid_num;
+    } else {
+        var webpshow = 0;
+        eval(html);
+        SiteD.set('img_host', img_qianzso[parseInt(SiteD.get('comic_size'))]);
+        SiteD.set('img_webp', (webpshow === 1 ? '.webp' : ''));
+        return SiteD.get('comic_url');
+    }
+}
+
+function section_parse(url, html) {
+    var $ = cheerio.load(html);
+    var infoScript = $('script:contains("eval")').text();
+    eval(infoScript);
+    var list = msg.split('|').map(function(i) {return SiteD.get('img_host') + i + SiteD.get('img_webp')});
+
+    return JSON.stringify(list);
+}
+        ]]>
+    </code>
+</script>
+</sited>
