@@ -1,5 +1,5 @@
 <!--?xml version="1.0" encoding="UTF-8" ?-->
-<sited ver="7" debug="1" engine="34" schema="1">
+<sited ver="9" debug="1" engine="34" schema="1">
     <meta>
     <ua></ua>
     <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
@@ -9,7 +9,7 @@
     <intro>[漫画] 漫画 160</intro>
     <alert></alert>
     <url>https://m.mh160.co</url>
-    <expr>m\.mh160\.co</expr>
+    <expr>m\.mh160\.co|m\.mh160\.xyz</expr>
     <logo></logo>
     <encode>UTF-8</encode>
     <about title="关于" mail="yinr@yinr.cc">
@@ -22,47 +22,48 @@
         <item txt="扫码使用微信打赏" logo="https://cloud.yinr.cc/s/SkmGBzxkeZoXNGb/download" />
     </about>
     </meta>
-    <main dtype="1" btag="漫画">
+    <main dtype="1" btag="漫画" durl="https://m.mh160.xyz">
         <home>
             <hots cache="1d" showImg="1" w="3" h="4" method="get"
                   title="排行榜"
                   parse="hots_parse"
-                  url="https://m.mh160.co/kanmanhua/zaixian_hit.html" />
+                  url="https://m.mh160.xyz/kanmanhua/zaixian_hit.html" />
             <updates cache="1d" showImg="1" method="get"
                      title="最近更新"
                      parse="updates_parse"
-                     url="https://m.mh160.co/kanmanhua/zaixian_recent.html" />
+                     url="https://m.mh160.xyz/kanmanhua/zaixian_recent.html" />
             <tags title="分类">
-                <item group="按状态" title="完结" url="https://m.mh160.co/kanmanhua/wanjie/@page.html" />
-                <item title="连载" url="https://m.mh160.co/kanmanhua/lianzai/@page.html" />
-                <item group="按地区" title="日韩" url="https://m.mh160.co/kanmanhua/zaixian_rhmh/@page.html" />
-                <item title="内地" url="https://m.mh160.co/kanmanhua/zaixian_dlmh/@page.html" />
-                <item title="港台" url="https://m.mh160.co/kanmanhua/zaixian_gtmh/@page.html" />
-                <item title="欧美" url="https://m.mh160.co/kanmanhua/zaixian_ommh/@page.html" />
-                <item group="按类型" title="热血" url="https://m.mh160.co/kanmanhua/rexue/@page.html" />
-                <item title="格斗" url="https://m.mh160.co/kanmanhua/gedou/@page.html" />
-                <item title="科幻" url="https://m.mh160.co/kanmanhua/kehuan/@page.html" />
-                <item title="竞技" url="https://m.mh160.co/kanmanhua/jingji/@page.html" />
-                <item title="搞笑" url="https://m.mh160.co/kanmanhua/gaoxiao/@page.html" />
-                <item title="推理" url="https://m.mh160.co/kanmanhua/tuili/@page.html" />
-                <item title="恐怖" url="https://m.mh160.co/kanmanhua/kongbu/@page.html" />
-                <item title="耽美" url="https://m.mh160.co/kanmanhua/danmei/@page.html" />
-                <item title="少女" url="https://m.mh160.co/kanmanhua/shaonv/@page.html" />
-                <item title="恋爱" url="https://m.mh160.co/kanmanhua/lianai/@page.html" />
-                <item title="生活" url="https://m.mh160.co/kanmanhua/shenghuo/@page.html" />
-                <item title="战争" url="https://m.mh160.co/kanmanhua/zhanzheng/@page.html" />
-                <item title="故事" url="https://m.mh160.co/kanmanhua/gushi/@page.html" />
-                <item title="百合" url="https://m.mh160.co/kanmanhua/baihe/@page.html" />
-                <item title="其他" url="https://m.mh160.co/kanmanhua/qita/@page.html" />
-                <item title="伪娘" url="https://m.mh160.co/kanmanhua/weiniang/@page.html" />
+                <item group="按状态" title="完结" url="https://m.mh160.xyz/kanmanhua/wanjie/@page.html" />
+                <item title="连载" url="https://m.mh160.xyz/kanmanhua/lianzai/@page.html" />
+                <item group="按地区" title="日韩" url="https://m.mh160.xyz/kanmanhua/zaixian_rhmh/@page.html" />
+                <item title="内地" url="https://m.mh160.xyz/kanmanhua/zaixian_dlmh/@page.html" />
+                <item title="港台" url="https://m.mh160.xyz/kanmanhua/zaixian_gtmh/@page.html" />
+                <item title="欧美" url="https://m.mh160.xyz/kanmanhua/zaixian_ommh/@page.html" />
+                <item group="按类型" title="热血" url="https://m.mh160.xyz/kanmanhua/rexue/@page.html" />
+                <item title="格斗" url="https://m.mh160.xyz/kanmanhua/gedou/@page.html" />
+                <item title="科幻" url="https://m.mh160.xyz/kanmanhua/kehuan/@page.html" />
+                <item title="竞技" url="https://m.mh160.xyz/kanmanhua/jingji/@page.html" />
+                <item title="搞笑" url="https://m.mh160.xyz/kanmanhua/gaoxiao/@page.html" />
+                <item title="推理" url="https://m.mh160.xyz/kanmanhua/tuili/@page.html" />
+                <item title="恐怖" url="https://m.mh160.xyz/kanmanhua/kongbu/@page.html" />
+                <item title="耽美" url="https://m.mh160.xyz/kanmanhua/danmei/@page.html" />
+                <item title="少女" url="https://m.mh160.xyz/kanmanhua/shaonv/@page.html" />
+                <item title="恋爱" url="https://m.mh160.xyz/kanmanhua/lianai/@page.html" />
+                <item title="生活" url="https://m.mh160.xyz/kanmanhua/shenghuo/@page.html" />
+                <item title="战争" url="https://m.mh160.xyz/kanmanhua/zhanzheng/@page.html" />
+                <item title="故事" url="https://m.mh160.xyz/kanmanhua/gushi/@page.html" />
+                <item title="百合" url="https://m.mh160.xyz/kanmanhua/baihe/@page.html" />
+                <item title="其他" url="https://m.mh160.xyz/kanmanhua/qita/@page.html" />
+                <item title="伪娘" url="https://m.mh160.xyz/kanmanhua/weiniang/@page.html" />
             </tags>
         </home>
 
-        <search cache="0" method="get" parse="search_parse" url="https://m.mh160.co/statics/search.aspx?key=@key&amp;page=@page" />
+        <search cache="0" method="get" parse="search_parse" url="https://m.mh160.xyz/statics/search.aspx?key=@key&amp;page=@page" />
 
         <tag cache="10m" showImg="1" method="get" parse="tag_parse" />
 
-        <book cache="1d" method="get" parse="book_parse" header="cookie $$ referer" />
+        <book cache="1d" method="get" parse="book_parse" header="cookie $$ referer"
+              buildUrl="book_buildUrl"/>
 
         <section cache="1d" method="get" parse="section_parse" header="cookie $$ referer" />
     </main>
@@ -73,7 +74,7 @@
         </require>
         <code>
             <![CDATA[
-var mainHost = "https://m.mh160.co";
+var mainHost = "https://m.mh160.xyz";
 
 function urla(u, host) {
     host = host || mainHost;
@@ -167,6 +168,10 @@ function search_parse(url, html) {
     return JSON.stringify(list);
 }
 
+function book_buildUrl(url) {
+    return url.replace(/\.mh160\.co/, ".mh160.xyz");
+}
+
 function book_parse(url, html) {
     var $ = cheerio.load(html);
     var data = {};
@@ -193,8 +198,8 @@ function book_parse(url, html) {
 
 function section_parse(url, html) {
     var pid = html.match(/var qTcms_S_p_id="(\d+)";/)[1];
-    var imgHost = parseInt(pid) > 542724 ? "https://mhpic5.miyeye.cn:20208" : "https://res.gezhengzhongyi.cn:20207";
-    if(parseInt(pid) > 884998) imgHost = "https://mhpic88.miyeye.cn:20207";
+    var imgHost = parseInt(pid) > 542724 ? "https://mhpic5.gezhengzhongyi.cn:8443" : "https://res.gezhengzhongyi.cn:8443";
+    if(parseInt(pid) > 884998) imgHost = "https://mhpic88.miyeye.cn:8443";
 
     var urlTxt = (new Base64).decode(html.match(/var qTcms_S_m_murl_e="([^"]+)";/)[1]).split("$qingtiandy$");
     var list = urlTxt.map(function(x){
