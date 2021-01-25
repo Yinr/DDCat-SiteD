@@ -1,5 +1,5 @@
 <!--?xml version="1.0" encoding="UTF-8" ?-->
-<sited ver="9" debug="1" engine="34" schema="1">
+<sited ver="10" debug="1" engine="34" schema="1">
     <meta>
     <ua></ua>
     <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
@@ -22,7 +22,7 @@
         <item txt="扫码使用微信打赏" logo="https://cloud.yinr.cc/s/SkmGBzxkeZoXNGb/download" />
     </about>
     </meta>
-    <main dtype="1" btag="漫画">
+    <main dtype="1" btag="漫画" durl="https://m.bnmanhua.com/comic.html">
         <home>
             <hots cache="1d" showImg="1" w="3" h="4" method="get"
                   title="排行"
@@ -172,9 +172,11 @@
             <![CDATA[
 var mainHost = "https://m.bnmanhua.com";
 
-function urla(u, host) {
+function urla(url, host) {
     host = host || mainHost;
     host = host.replace(/\/$/, '');
+
+    var u = decodeURI(url);
 
     if (u.indexOf("http") < 0) {
         if (u.substr(0, 2) != '//') {
@@ -184,7 +186,8 @@ function urla(u, host) {
             u = 'http:' + u;
         }
     }
-    return u;
+
+    return encodeURI(u);
 }
 
 function hots_parse(url, html) {
@@ -303,7 +306,7 @@ function section_parse(url, html) {
 
     var scriptText = $('body > script').filter(function(i, el) {return $(el).text().length > 100}).eq(0).text();
     var z_yurl = '', listText = '', play = '';
-    z_yurl = 'https://img.yaoyaoliao.com/';
+    z_yurl = 'https://img.weitianhou.com/';
     listText = scriptText.match(/(?:z_img=')([^']+)(?:';)/)[1];
     try {play = scriptText.match(/(?:play=')([^']+)(?:';)/)[1];} catch (e) {}
     list = JSON.parse(listText);
