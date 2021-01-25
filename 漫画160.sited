@@ -1,5 +1,5 @@
 <!--?xml version="1.0" encoding="UTF-8" ?-->
-<sited ver="9" debug="1" engine="34" schema="1">
+<sited ver="10" debug="1" engine="34" schema="1">
     <meta>
     <ua></ua>
     <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
@@ -76,9 +76,11 @@
             <![CDATA[
 var mainHost = "https://m.mh160.xyz";
 
-function urla(u, host) {
+function urla(url, host) {
     host = host || mainHost;
     host = host.replace(/\/$/, '');
+
+    var u = decodeURI(url);
 
     if (u.indexOf("http") < 0) {
         if (u.substr(0, 2) != '//') {
