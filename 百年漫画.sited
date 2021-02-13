@@ -1,5 +1,5 @@
 <!--?xml version="1.0" encoding="UTF-8" ?-->
-<sited ver="10" debug="1" engine="34" schema="1">
+<sited ver="11" debug="1" engine="34" schema="1">
     <meta>
     <ua></ua>
     <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
@@ -306,10 +306,10 @@ function section_parse(url, html) {
 
     var scriptText = $('body > script').filter(function(i, el) {return $(el).text().length > 100}).eq(0).text();
     var z_yurl = '', listText = '', play = '';
-    z_yurl = 'https://img.weitianhou.com/';
+    z_yurl = 'https://img.lxhy88.com/';
     listText = scriptText.match(/(?:z_img=')([^']+)(?:';)/)[1];
     try {play = scriptText.match(/(?:play=')([^']+)(?:';)/)[1];} catch (e) {}
-    list = JSON.parse(listText);
+    list = eval('(' + listText + ')');
     list = list.map(function(imgurl) {
 
         var getPath = function(url) {
