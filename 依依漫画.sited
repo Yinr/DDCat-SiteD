@@ -1,12 +1,12 @@
 <!--?xml version="1.0" encoding="UTF-8" ?-->
-<sited ver="1" debug="1" engine="34" schema="1">
+<sited ver="2" debug="1" engine="34" schema="1">
     <meta>
     <ua></ua>
     <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
     <title>依依漫画</title>
     <author>Yinr</author>
     <contact>yinr@yinr.cc</contact>
-    <intro>[漫画] 依依漫画网&#x000A;由于源网站实现问题，分类暂时只可加载第一页内容，请暂时使用搜索进行查找漫画</intro>
+    <intro>[漫画] 依依漫画网&#x000A;修复图片显示，因为源网站设计原因，部分章节可能加载较慢，请耐心等待</intro>
     <alert></alert>
     <url>http://m.yiyimanhua.com/</url>
     <expr>m\.yiyimanhua\.com</expr>
@@ -43,6 +43,7 @@
         <book cache="1d" method="get" parse="book_parse" />
 
         <section cache="1d" method="get" header="cookie $$ referer"
+                 parseUrl="section_parseUrl"
                  parse="section_parse" />
     </main>
     <script>
@@ -54,7 +55,6 @@
 const mainHost = 'http://m.yiyimanhua.com';
 /* resHost from /js/config.js */
 const resHost = 'https://res.yiyimanhua.com';
-
 
 function urla(url, host) {
     host = host || mainHost;
@@ -165,13 +165,28 @@ function book_parse(url, html) {
     return JSON.stringify(data);
 }
 
+function section_parseUrl(url, html) {
+    var $ = cheerio.load(html);
+
+    var next = urla($('.erPag mip-link').attr('href'));
+    if (next.match(/-\d+\.html$/)) {
+        return url + ';CALL::' + next;
+    } else {
+        return url;
+    }
+}
+
 function section_parse(url, html) {
     var $ = cheerio.load(html);
 
     var infoScript = $('script:contains("var chapterImages")').text();
-    eval(infoScript);
-
-    return JSON.stringify(chapterImages.map(function(imgurl) { return urla(imgurl, resHost); }));
+    if (infoScript) {
+        eval(infoScript);
+        return JSON.stringify(chapterImages.map(function(imgurl) { return urla(chapterPath + imgurl, resHost); }));
+    } else {
+        var img = urla($('.erPag mip-link mip-img').attr('src'));
+        return JSON.stringify([img]);
+    }
 }
 
             ]]>
