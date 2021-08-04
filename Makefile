@@ -25,7 +25,8 @@ $(INDEX): $(OBJECTS) Makefile
 		INDEX_BASE_IP="$$(ip route get 8.8.8.8 | sed -nE '/8.8.8.8/s/.*src (\S+) .*/\1/p')"; \
 		tree -hrDCL 1 --prune \
 		-H "sited://$${INDEX_BASE_URL:-$${INDEX_BASE_IP}}" \
-		-P '*.sited' -o "$@" .
+		-P '*.sited' -o "$@" .; \
+		echo "IP: $$INDEX_BASE_IP"
 	@echo $@ Generated!
 
 .PHONY: build index all new \
@@ -44,6 +45,7 @@ server: server-start server-status
 
 server-start: index
 	@echo -n 'Docker server: '
+	# @python -m http.server 80
 	@docker run --rm --name nginx-ddcat \
 	        -v "$$PWD":/usr/share/nginx/html:ro \
 	        -p $(strip $(PORT)):80 -d \
