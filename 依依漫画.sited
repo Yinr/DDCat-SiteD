@@ -1,12 +1,12 @@
 <!--?xml version="1.0" encoding="UTF-8" ?-->
-<sited ver="3" debug="1" engine="34" schema="1">
+<sited ver="4" debug="1" engine="34" schema="1">
     <meta>
     <ua></ua>
     <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
     <title>依依漫画</title>
     <author>Yinr</author>
     <contact>yinr@yinr.cc</contact>
-    <intro>[漫画] 依依漫画网&#x000A;修复图片显示，因为源网站设计原因，部分章节可能加载较慢，请耐心等待</intro>
+    <intro>[漫画] 依依漫画网&#x000A;修复图片显示，因为源网站设计原因，部分章节可能加载较慢，现已加入加载进度提示</intro>
     <alert></alert>
     <url>http://m.yiyimanhua.com/</url>
     <expr>m\.yiyimanhua\.com</expr>
@@ -170,8 +170,12 @@ function section_parseUrl(url, html) {
 
     var next = urla($('.UnderPag mip-link').attr('href'));
     var nextMatch = next.match(/-(\d+)\.html$/)
-    if (nextMatch) {
-        if (nextMatch[1] === '2') { print('该页面可能加载较慢，请稍作等待'); }
+    if (nextMatch && nextMatch[1].length > 0) {
+        if (nextMatch[1] === '2') {
+            print('该页面可能加载较慢，请稍等...');
+        } else if (parseInt(nextMatch[1]) % 80 === 0) {
+            print('仍在加载中，当前已加载 ' + nextMatch[1] + ' 页...');
+        }
         return url + ';CALL::' + next;
     } else {
         return url;
