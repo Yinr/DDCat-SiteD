@@ -1,5 +1,5 @@
 <!--?xml version="1.0" encoding="UTF-8" ?-->
-<sited ver="2" debug="1" engine="34" schema="1">
+<sited ver="3" debug="1" engine="34" schema="1">
     <meta>
     <ua></ua>
     <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
@@ -168,8 +168,10 @@ function book_parse(url, html) {
 function section_parseUrl(url, html) {
     var $ = cheerio.load(html);
 
-    var next = urla($('.erPag mip-link').attr('href'));
-    if (next.match(/-\d+\.html$/)) {
+    var next = urla($('.UnderPag mip-link').attr('href'));
+    var nextMatch = next.match(/-(\d+)\.html$/)
+    if (nextMatch) {
+        if (nextMatch[1] === '2') { print('该页面可能加载较慢，请稍作等待'); }
         return url + ';CALL::' + next;
     } else {
         return url;
@@ -184,7 +186,7 @@ function section_parse(url, html) {
         eval(infoScript);
         return JSON.stringify(chapterImages.map(function(imgurl) { return urla(chapterPath + imgurl, resHost); }));
     } else {
-        var img = urla($('.erPag mip-link mip-img').attr('src'));
+        var img = urla($('.UnderPag mip-link mip-img').attr('src'));
         return JSON.stringify([img]);
     }
 }
