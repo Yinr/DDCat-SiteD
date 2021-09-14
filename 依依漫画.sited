@@ -1,12 +1,12 @@
 <!--?xml version="1.0" encoding="UTF-8" ?-->
-<sited ver="5" debug="1" engine="34" schema="1">
+<sited ver="7" debug="1" engine="34" schema="1">
     <meta>
     <ua></ua>
     <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
     <title>依依漫画</title>
     <author>Yinr</author>
     <contact>yinr@yinr.cc</contact>
-    <intro>[漫画] 依依漫画网&#x000A;优化加载进度提示。因为源网站设计原因，部分章节可能加载较慢，请耐心等待加载</intro>
+    <intro>[漫画] 依依漫画网&#x000A;优化加载进度提示，增加下架漫画提示。&#x000A;因为源网站设计原因，部分章节可能加载较慢，请耐心等待加载</intro>
     <alert></alert>
     <url>http://m.yiyimanhua.com/</url>
     <expr>m\.yiyimanhua\.com</expr>
@@ -173,9 +173,8 @@ function section_parseUrl(url, html) {
     var nextMatch = next.match(/-(\d+)\.html$/)
     var pageStr = nextMatch ? nextMatch[1] : '';
     if (pageStr) {
-        if (pageStr === '2') {
+        if (pageStr === '5') {
             print('该页面可能加载较慢，请稍等...');
-            /* lastPageTime = (new Date()).getTime(); */
             lastPageTime = new Date();
         } else if (parseInt(pageStr) % 20 === 0) {
             var thisPageTime = new Date();
@@ -193,6 +192,11 @@ function section_parseUrl(url, html) {
 
 function section_parse(url, html) {
     var $ = cheerio.load(html);
+
+    if ($('.ip-notice').length > 0) {
+        print('由于版权原因已下架');
+        return '["http://via.placeholder.com/150.webp?text=NOT+AVAILABLE"]';
+    }
 
     var infoScript = $('script:contains("var chapterImages")').text();
     if (infoScript) {
