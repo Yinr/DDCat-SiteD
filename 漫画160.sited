@@ -1,5 +1,5 @@
 <!--?xml version="1.0" encoding="UTF-8" ?-->
-<sited ver="11" debug="1" engine="34" schema="1">
+<sited ver="12" debug="1" engine="34" schema="1">
     <meta>
     <ua></ua>
     <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
@@ -65,7 +65,8 @@
         <book cache="1d" method="get" parse="book_parse" header="cookie $$ referer"
               buildUrl="book_buildUrl"/>
 
-        <section cache="1d" method="get" parse="section_parse" header="cookie $$ referer" />
+        <section cache="1d" method="get" parse="section_parse" header="cookie $$ referer"
+                 buildUrl="book_buildUrl"/>
     </main>
     <script>
         <require>
