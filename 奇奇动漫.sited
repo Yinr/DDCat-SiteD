@@ -264,7 +264,6 @@ function section_parse(url, html) {
             break;
         case 'youku':
             var youkuId = um.url.match(/\/([^/#]+)#[^#]+$/)[1];
-            print(youkuId);
             um.url = 'https://v.youku.com/v_show/id_' + youkuId + '.html'
             um.type = '.html';
             um.mime = 'text/html';
