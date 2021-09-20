@@ -1,5 +1,5 @@
 <!--?xml version="1.0" encoding="UTF-8" ?-->
-<sited ver="6" debug="1" engine="34" schema="1">
+<sited ver="7" debug="1" engine="34" schema="1">
     <meta>
     <ua></ua>
     <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
@@ -175,7 +175,7 @@ function book_parse(url, html) {
     data.name = $('.title').text();
     data.author = $('dl.pic_zi:nth-child(3) > dd > a').text();
     data.intro = $('.txtDesc').text().replace(/简介：|\[\-折叠\]/g, '');
-    data.logo = $('#Cover img').attr('src');
+    data.logo = $('#Cover mip-img').attr('src');
     data.updateTime = $('dl.pic_zi:nth-child(5) > dd').text();
     /* data.isSectionsAsc = 1; */
     var sections = [];
