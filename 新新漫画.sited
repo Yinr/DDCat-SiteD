@@ -1,5 +1,5 @@
 <!--?xml version="1.0" encoding="UTF-8" ?-->
-<sited ver="3" debug="1" engine="34" schema="1">
+<sited ver="4" debug="1" engine="34" schema="1">
 <meta>
     <ua></ua>
     <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
@@ -9,7 +9,7 @@
     <intro>[漫画] 集齐漫画资源相当丰富，只有你想不到的，没有看不到的，每天更新百部漫画。</intro>
     <alert></alert>
     <url>https://m.77mh.co/</url>
-    <expr>m\.77mh\.co</expr>
+    <expr>m\.77mh\.co|m2?\.77mh\.de</expr>
     <logo>https://m.77mh.co/favicon.ico</logo>
     <encode>UTF-8</encode>
     <about title="关于" mail="yinr@yinr.cc">
@@ -45,7 +45,7 @@
     </require>
     <code>
         <![CDATA[
-var mainHost = 'https://m.77mh.co';
+var mainHost = 'https://m2.77mh.de';
 var ImgSvrList = 'https://css.gdbyhtl.net:5443/img_v1/cn_svr.asp';
 
 function urla(url, host) {
