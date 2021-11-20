@@ -1,5 +1,5 @@
 <!--?xml version="1.0" encoding="UTF-8" ?-->
-<sited ver="4" debug="1" engine="34" schema="1">
+<sited ver="5" debug="1" engine="34" schema="1">
 <meta>
     <ua></ua>
     <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
@@ -9,8 +9,8 @@
     <intro>[漫画] 集齐漫画资源相当丰富，只有你想不到的，没有看不到的，每天更新百部漫画。</intro>
     <alert></alert>
     <url>https://m.77mh.co/</url>
-    <expr>m\.77mh\.co|m2?\.77mh\.de</expr>
-    <logo>https://m.77mh.co/favicon.ico</logo>
+    <expr>m\.77mh\.co|m2?\.77mh\.de|m\.77mh\.pro</expr>
+    <logo>https://m.77mh.pro/favicon.ico</logo>
     <encode>UTF-8</encode>
     <about title="关于" mail="yinr@yinr.cc">
         <item title="插件开发者：@Yinr" />
@@ -27,11 +27,11 @@
         <updates cache="1d" showImg="1" method="get"
                     title="新上架"
                     parse="tag_parse"
-                    url="https://m.77mh.co/new_coc.html" />
-        <tags cache="1d" title="分类" parse="tags_parse" url="https://m.77mh.co/index.html" />
+                    url="https://m.77mh.pro/new_coc.html" />
+        <tags cache="1d" title="分类" parse="tags_parse" url="https://m.77mh.pro/index.html" />
     </home>
 
-    <search cache="0" method="get" parse="tag_parse" url="https://so.77mh.co/m.php?k=@key&amp;p=@page" />
+    <search cache="0" method="get" parse="tag_parse" url="https://so.77mh.pro/m.php?k=@key&amp;p=@page" />
 
     <tag cache="10m" showImg="1" method="get" parse="tag_parse" />
 
@@ -45,7 +45,7 @@
     </require>
     <code>
         <![CDATA[
-var mainHost = 'https://m2.77mh.de';
+var mainHost = 'https://m.77mh.pro';
 var ImgSvrList = 'https://css.gdbyhtl.net:5443/img_v1/cn_svr.asp';
 
 function urla(url, host) {
