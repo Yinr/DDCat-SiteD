@@ -1,5 +1,5 @@
 <!--?xml version="1.0" encoding="UTF-8" ?-->
-<sited ver="13" debug="1" engine="34" schema="1">
+<sited ver="15" debug="1" engine="34" schema="1">
     <meta>
     <ua></ua>
     <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
@@ -63,10 +63,10 @@
         <tag cache="10m" showImg="1" method="get" parse="tag_parse" />
 
         <book cache="1d" method="get" parse="book_parse" header="cookie $$ referer"
-              buildUrl="update_url"/>
+              buildUrl="update_url" buildWeb="update_url" />
 
         <section cache="1d" method="get" parse="section_parse" header="cookie $$ referer"
-                 buildWeb="update_url"/>
+                 buildWeb="update_url" />
     </main>
     <script>
         <require>
