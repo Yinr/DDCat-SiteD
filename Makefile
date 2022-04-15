@@ -23,7 +23,7 @@ build: $(TARGETS)
 $(INDEX): $(OBJECTS) Makefile
 	@INDEX_BASE_URL=$(INDEX_BASE_URL); \
 		INDEX_BASE_IP="$$(ip route get 8.8.8.8 | sed -nE '/8.8.8.8/s/.*src (\S+) .*/\1/p')"; \
-		tree -hrDCL 1 --prune \
+		tree -hrDCtL 1 --prune \
 		-H "sited://$${INDEX_BASE_URL:-$${INDEX_BASE_IP}}" \
 		-P '*.sited' -o "$@" .; \
 		echo "IP: $$INDEX_BASE_IP"
@@ -31,7 +31,7 @@ $(INDEX): $(OBJECTS) Makefile
 
 .PHONY: build index all new \
         server server-restart server-start server-status server-stop \
-        clean cleanall
+        clean clean-index clean-all
 
 new: template.sited.xml
 	@read -p "input new name (without ext): " newFile && \
@@ -63,7 +63,7 @@ server-stop:
 clean:
 	-$(RM) $(TARGETS)
 
-cleanindex:
+clean-index:
 	-$(RM) $(INDEX)
 
-cleanall: cleanindex clean
+clean-all: clean-index clean
