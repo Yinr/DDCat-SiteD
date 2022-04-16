@@ -1,5 +1,5 @@
 <!--?xml version="1.0" encoding="UTF-8" ?-->
-<sited ver="15" debug="1" engine="34" schema="1">
+<sited ver="16" debug="1" engine="34" schema="1">
     <meta>
     <ua></ua>
     <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
@@ -26,11 +26,11 @@
         <home>
             <hots cache="1d" showImg="1" w="3" h="4" method="get"
                   title="排行榜"
-                  parse="hots_parse"
+                  parse="index_parse"
                   url="https://m.mh160.cc/kanmanhua/zaixian_hit.html" />
             <updates cache="1d" showImg="1" method="get"
                      title="最近更新"
-                     parse="updates_parse"
+                     parse="index_parse"
                      url="https://m.mh160.cc/kanmanhua/zaixian_recent.html" />
             <tags title="分类">
                 <item group="按状态" title="完结" url="https://m.mh160.cc/kanmanhua/wanjie/@page.html" />
@@ -62,11 +62,13 @@
 
         <tag cache="10m" showImg="1" method="get" parse="tag_parse" />
 
-        <book cache="1d" method="get" parse="book_parse" header="cookie $$ referer"
-              buildUrl="update_url" buildWeb="update_url" />
+        <book cache="1d" method="get" header="cookie $$ referer"
+              buildUrl="build_url" buildWeb="build_url"
+              parse="book_parse" />
 
-        <section cache="1d" method="get" parse="section_parse" header="cookie $$ referer"
-                 buildWeb="update_url" />
+        <section cache="1d" method="get" header="cookie $$ referer"
+                 buildWeb="update_url"
+                 parse="section_parse" />
     </main>
     <script>
         <require>
@@ -80,7 +82,6 @@ var mainHost = "https://m.mh160.cc";
 function urla(url, host) {
     host = host || mainHost;
     host = host.replace(/\/$/, '');
-    url = url.replace(/m\.mh160(\.co|\.xyz)/, 'm.mh160.cc');
 
     var u = decodeURI(url);
 
@@ -95,28 +96,11 @@ function urla(url, host) {
     return encodeURI(u);
 }
 
-function update_url(url) {
-    return urla(url);
+function build_url(url) {
+    return url.replace(/^https?:\/\/[^\/]+/i, mainHost);
 }
 
-function hots_parse(url, html) {
-    var $ = cheerio.load(html);
-    var list = [];
-
-    $('div.itemBox').each(function () {
-        var book = $(this);
-        var book_title = book.find('a.title');
-        var bm = {};
-        bm.name = book_title.text();
-        bm.url = urla(book_title.attr('href'));
-        bm.logo = book.find('img').attr('src');
-        list.push(bm);
-    });
-
-    return JSON.stringify(list);
-}
-
-function updates_parse(url, html) {
+function index_parse(url, html) {
     var $ = cheerio.load(html);
     var list = [];
 
@@ -144,7 +128,7 @@ function tag_parse(url, html) {
         var bm = {};
         bm.name = book.children('.txtA').text();
         bm.url = urla(book.children('.ImgA').attr('href'));
-        bm.logo = book.find('a.ImgA > img').attr('src');
+        bm.logo = book.find('img').attr('src');
         bm.author = "";
         bm.status = "";
         bm.newSection = book.children('.info').text();
@@ -164,7 +148,7 @@ function search_parse(url, html) {
         var bm = {};
         bm.name = book.children('.txtA').text();
         bm.url = urla(book.children('.ImgA').attr('href'));
-        bm.logo = book.find('a.ImgA > img').attr('src');
+        bm.logo = book.find('img').attr('src');
         bm.author = "";
         bm.status = "";
         bm.newSection = book.children('.info').text();
