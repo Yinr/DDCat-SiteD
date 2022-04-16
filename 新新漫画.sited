@@ -1,5 +1,5 @@
 <!--?xml version="1.0" encoding="UTF-8" ?-->
-<sited ver="6" debug="1" engine="34" schema="1">
+<sited ver="7" debug="1" engine="34" schema="1">
 <meta>
     <ua></ua>
     <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
@@ -35,7 +35,9 @@
 
     <tag cache="10m" showImg="1" method="get" parse="tag_parse" />
 
-    <book cache="1d" method="get" parse="book_parse" header="cookie $$ referer" />
+    <book cache="1d" method="get" header="cookie $$ referer"
+          buildUrl="build_url" buildWeb="build_url"
+          parse="book_parse" />
 
     <section cache="1d" method="get" parseUrl="section_parseUrl" parse="section_parse" header="cookie $$ referer" />
 </main>
@@ -63,6 +65,10 @@ function urla(url, host) {
         }
     }
     return encodeURI(u);
+}
+
+function build_url(url) {
+    return url.replace(/^https?:\/\/[^\/]+/i, mainHost);
 }
 
 function tags_parse(url, html) {
