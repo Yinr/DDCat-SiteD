@@ -1,12 +1,12 @@
 <!--?xml version="1.0" encoding="UTF-8" ?-->
-<sited ver="4" debug="1" engine="34" schema="1">
+<sited ver="5" debug="1" engine="34" schema="1">
 <meta>
     <ua></ua>
     <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
     <title>漫画码</title>
     <author>Yinr</author>
     <contact>yinr@yinr.cc</contact>
-    <intro>[漫画][国漫为主] 漫画码是有上万部免费漫画大全的阅读平台，找免费漫画网就上漫画码&#x000A;更新说明：修复网站，改善下架漫画提示，如果详情中漫画名有问题欢迎反馈</intro>
+    <intro>[漫画][国漫为主] 漫画码是有上万部免费漫画大全的阅读平台，找免费漫画网就上漫画码&#x000A;更新说明：修复网站及搜索，修复部分下架漫画</intro>
     <url>https://m.manhuama.net</url>
     <expr>(www|m)\.manhuama\.(net|cn|com)</expr>
     <logo>http://resource.simanhua.com/manhuama_pc/static/images/favicon.ico</logo>
@@ -32,11 +32,13 @@
     </home>
 
     <search cache="0" method="get" parse="search_parse" header="cookie $$ referer"
-            url="http://www.manhuama.com/api/getsortlist/?page=@page&amp;comic_sort=&amp;orderby=click&amp;search_key=@key&amp;size=48" />
+            url="https://m.manhuama.com/sort/all.html?cache=false&amp;search_key=@key" />
 
     <tag cache="10m" showImg="1" method="get" parse="tag_parse" />
 
-    <book cache="1d" method="get" parse="book_parse" header="cookie $$ referer" />
+    <book cache="1d" method="get" header="cookie $$ referer"
+          buildUrl="build_url" buildWeb="build_url"
+          parse="book_parse" />
 
     <section cache="1d" method="get" parse="section_parse" parseUrl="section_parseUrl" header="cookie $$ referer" />
 </main>
@@ -46,11 +48,10 @@
     </require>
     <code>
         <![CDATA[
-var mainHost = "http://www.manhuama.com/";
+var mainHost = "http://m.manhuama.com/";
 
 function urla(url, host) {
     host = host || mainHost;
-    host = host.replace(/(www|m)\.manhuama\.(net|cn)/, 'www.manhuama.com');
     host = host.replace(/\/$/, '');
 
     var u = decodeURI(url);
@@ -64,6 +65,10 @@ function urla(url, host) {
         }
     }
     return encodeURI(u);
+}
+
+function build_url(url) {
+    return url.replace(/^https?:\/\/[^\/]+/i, mainHost);
 }
 
 function tags_parse(url, html) {
@@ -110,17 +115,22 @@ function tag_parse(url, html) {
 }
 
 function search_parse(url, html) {
-    var data = JSON.parse(html).data.data;
-    var list = data.map(function (item) {
-        return {
-            name: item.comic_name,
-            url: urla('/' + item.comic_newid + '/'),
-            logo: urla('//cover.simanhua.com/mh/' + item.comic_id + '.jpg-300x400.webp'),
-            author: item.comic_author,
-            newSection: item.last_chapter_name,
-            btag: '漫画'
-        };
-    })
+    var $ = cheerio.load(html);
+    var list = [];
+
+    $('#js_comicSortList > li > a').each(function () {
+        var book = $(this);
+        var bm = {};
+        bm.name = book.children('p.title').text();
+        bm.url = urla(book.attr('href'));
+        bm.logo = book.find('img').attr('data-src');
+        bm.author = "";
+        bm.status = "";
+        bm.newSection = book.find('.chapter').text();
+        bm.updateTime = "";
+        bm.btag = "漫画";
+        list.push(bm);
+    });
 
     return JSON.stringify(list.slice(0, 10));
 }
@@ -129,28 +139,22 @@ function book_parse(url, html) {
     var $ = cheerio.load(html);
     var data = {};
 
-    data.name = $('#detail-title').text().replace(/授权|独家|网传/, '');
+    data.name = $('.comic-info .comic-detail h1').text();
     data.author = '';
-    data.intro = $('#js_comciDesc').text();
-    data.logo = urla($('.detail-cover .thumb').data('src'));
-    data.updateTime = $('#detail-chapter .update').text().substring(0, 10);
+    data.intro = $('#js_desc_content').text().replace(/全文$/m, '');
+    data.logo = urla($('.comic-cover img').data('data-src'));
+    data.updateTime = '';
     data.isSectionsAsc = 0;
     data.sections = [];
 
-    if ($('#detail-chapter > div.bd > p.acgn-tac').length > 0) {
+    $('#js_chapter_list > li > div > a').each(function () {
+        var list_item = $(this);
         data.sections.push({
-            'name': '该漫画已下架，可以点击漫画名搜索其他插件',
+            'name': list_item.children('.name').text(),
+            'url': urla(list_item.attr('href'))
         });
-    } else {
-        $('#j_chapter_list > li a').each(function () {
-            var list_item = $(this);
-            data.sections.push({
-                'name': list_item.children('.name').text(),
-                'url': urla(list_item.attr('href'))
-            });
-        });
-        data.sections = data.sections.reverse();
-    }
+    });
+    data.sections = data.sections.reverse();
 
     return JSON.stringify(data);
 }
