@@ -1,5 +1,5 @@
 <!--?xml version="1.0" encoding="UTF-8" ?-->
-<sited ver="7" debug="1" engine="34" schema="1">
+<sited ver="8" debug="1" engine="34" schema="1">
 <meta>
     <ua></ua>
     <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
@@ -9,7 +9,7 @@
     <intro>[漫画] 集齐漫画资源相当丰富，只有你想不到的，没有看不到的，每天更新百部漫画。</intro>
     <alert></alert>
     <url>https://m.77mh.co/</url>
-    <expr>m\.77mh\.co|m2?\.77mh\.de|m\.77mh\.pro|m\.77mh\.in</expr>
+    <expr>m2?\.77mh\.(co|de|pro|in|one|xyz)</expr>
     <logo>https://m.77mh.in/favicon.ico</logo>
     <encode>UTF-8</encode>
     <about title="关于" mail="yinr@yinr.cc">
@@ -27,11 +27,11 @@
         <updates cache="1d" showImg="1" method="get"
                     title="新上架"
                     parse="tag_parse"
-                    url="https://m.77mh.in/new_coc.html" />
-        <tags cache="1d" title="分类" parse="tags_parse" url="https://m.77mh.in/index.html" />
+                    url="https://m.77mh.one/new_coc.html" />
+        <tags cache="1d" title="分类" parse="tags_parse" url="https://m.77mh.one/index.html" />
     </home>
 
-    <search cache="0" method="get" parse="tag_parse" url="https://so.77mh.in/m.php?k=@key&amp;p=@page" />
+    <search cache="0" method="get" parse="tag_parse" url="https://so.77mh.one/m.php?k=@key&amp;p=@page" />
 
     <tag cache="10m" showImg="1" method="get" parse="tag_parse" />
 
@@ -47,8 +47,8 @@
     </require>
     <code>
         <![CDATA[
-var mainHost = 'https://m.77mh.in';
-var ImgSvrList = 'https://css.gdbyhtl.net:5443/img_v1/hw2_svr.asp';
+var mainHost = 'https://m.77mh.one';
+var ImgSvrList = 'https://css.gdbyhtl.net:5443/img_v1/cncf_svr.asp';
 
 function urla(url, host) {
     host = host || mainHost;
