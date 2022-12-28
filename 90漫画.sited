@@ -1,5 +1,5 @@
 <!--?xml version="1.0" encoding="UTF-8" ?-->
-<sited ver="8" debug="1" engine="34" schema="1">
+<sited ver="9" debug="1" engine="34" schema="1">
     <meta>
     <ua></ua>
     <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
@@ -10,7 +10,7 @@
     <alert></alert>
     <url>http://m.90mh.com/</url>
     <expr>\.90mh\.com</expr>
-    <logo>http://m.90mh.com/favicon.ico</logo>
+    <logo>http://wap.90mh.com/favicon.ico</logo>
     <encode>UTF-8</encode>
     <about title="关于" mail="yinr@yinr.cc">
         <item title="插件开发者：@Yinr" />
@@ -18,24 +18,24 @@
         <item txt="点击右下角或复制邮箱反馈问题" />
         <item url="yinr@yinr.cc" />
         <item />
-        <item txt="点击或扫码对[Yinr]支付宝打赏" expr="https://qr.alipay.com/tsx072676oy3djrgrp1hvcf" logo="https://cloud.yinr.cc/s/FjN52G3snrTqj8S/download" />
-        <item txt="扫码使用微信打赏" logo="https://cloud.yinr.cc/s/SkmGBzxkeZoXNGb/download" />
+        <item txt="点击或扫码对[Yinr]支付宝打赏" expr="https://qr.alipay.com/tsx072676oy3djrgrp1hvcf" logo="https://storage.lolicon.in/img/1672243474705pL2az.jpg" />
+        <item txt="扫码使用微信打赏" logo="https://storage.lolicon.in/img/1672243474693fjLyD.png" />
     </about>
     </meta>
-    <main dtype="1" btag="漫画">
+    <main dtype="1" btag="漫画" durl="http://wap.90mh.com/">
         <home>
             <hots cache="1d" showImg="1" w="3" h="4" method="get" title="排行"
                   parse="updates_parse"
-                  url="http://m.90mh.com/rank/" />
+                  url="http://wap.90mh.com/rank/" />
             <updates cache="1d" showImg="1" w="3" h="4" method="get" title="更新"
                      parse="updates_parse"
-                     url="http://m.90mh.com/update/" />
+                     url="http://wap.90mh.com/update/" />
             <tags cache="1d" method="get" title="分类"
                   parse="tags_parse"
-                  url="http://m.90mh.com/search/" />
+                  url="http://wap.90mh.com/search/" />
         </home>
 
-        <search cache="0" method="get" parse="search_parse" url="http://m.90mh.com/search/?keywords=@key" />
+        <search cache="0" method="get" parse="search_parse" url="http://wap.90mh.com/search/?keywords=@key" />
 
         <tag cache="10m" showImg="1" w="3" h="4" method="get" parse="tag_parse" />
 
@@ -52,7 +52,7 @@
         </require>
         <code>
             <![CDATA[
-const mainHost = 'http://m.90mh.com';
+const mainHost = 'http://wap.90mh.com';
 const LARGE_SEC_SPLIT = 3;
 
 function urla(url, host) {
