@@ -18,8 +18,8 @@
         <item txt="点击右下角或复制邮箱反馈问题" />
         <item url="yinr@yinr.cc" />
         <item />
-        <item txt="点击或扫码对[Yinr]支付宝打赏" expr="https://qr.alipay.com/tsx072676oy3djrgrp1hvcf" logo="https://cloud.yinr.cc/s/FjN52G3snrTqj8S/download" />
-        <item txt="扫码使用微信打赏" logo="https://cloud.yinr.cc/s/SkmGBzxkeZoXNGb/download" />
+        <item txt="点击或扫码对[Yinr]支付宝打赏" expr="https://qr.alipay.com/tsx072676oy3djrgrp1hvcf" logo="https://storage.lolicon.in/yinr/pay/alipay.jpg" />
+        <item txt="或扫码使用微信打赏" logo="https://storage.lolicon.in/yinr/pay/wechatpay.jpg" />
     </about>
     </meta>
     <main dtype="1" btag="漫画">
@@ -181,8 +181,8 @@ function section_parseUrl(url, html) {
             if (thisPageTime - lastPageTime >= 5000) {
                 print('页面仍在加载中，当前已加载 ' + pageStr + ' 页...');
                 lastPageTime = thisPageTime;
-            } 
-        } 
+            }
+        }
         return url + ';CALL::' + next;
     } else {
         lastPageTime = undefined;
