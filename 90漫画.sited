@@ -1,5 +1,5 @@
 <!--?xml version="1.0" encoding="UTF-8" ?-->
-<sited ver="9" debug="1" engine="34" schema="1">
+<sited ver="10" debug="1" engine="34" schema="1">
     <meta>
     <ua></ua>
     <guid>95031dd97f1b4e19b44859f9c1637d20</guid>
@@ -10,7 +10,7 @@
     <alert></alert>
     <url>http://m.90mh.com/</url>
     <expr>\.90mh\.com</expr>
-    <logo>http://wap.90mh.com/favicon.ico</logo>
+    <logo>http://www.90mh.com/favicon.ico</logo>
     <encode>UTF-8</encode>
     <about title="关于" mail="yinr@yinr.cc">
         <item title="插件开发者：@Yinr" />
@@ -22,29 +22,30 @@
         <item txt="或扫码使用微信打赏" logo="https://storage.lolicon.in/yinr/pay/wechatpay.jpg" />
     </about>
     </meta>
-    <main dtype="1" btag="漫画" durl="http://wap.90mh.com/">
+    <main dtype="1" btag="漫画" durl="http://www.90mh.com/">
         <home>
             <hots cache="1d" showImg="1" w="3" h="4" method="get" title="排行"
-                  parse="updates_parse"
-                  url="http://wap.90mh.com/rank/" />
+                  parse="hots_parse"
+                  url="http://www.90mh.com/rank/" />
             <updates cache="1d" showImg="1" w="3" h="4" method="get" title="更新"
                      parse="updates_parse"
-                     url="http://wap.90mh.com/update/" />
+                     url="http://www.90mh.com/update/" />
             <tags cache="1d" method="get" title="分类"
                   parse="tags_parse"
-                  url="http://wap.90mh.com/search/" />
+                  url="http://www.90mh.com/rank/" />
         </home>
 
-        <search cache="0" method="get" parse="search_parse" url="http://wap.90mh.com/search/?keywords=@key" />
+        <search cache="0" method="get" parse="updates_parse" url="http://www.90mh.com/search/?keywords=@key" />
 
         <tag cache="10m" showImg="1" w="3" h="4" method="get" parse="tag_parse" />
 
         <book cache="1d" method="get"
-              buildUrl="build_url"
+              buildUrl="build_url" buildWeb="build_url"
               parse="book_parse" />
 
         <section cache="1d" method="get" header="cookie $$ referer"
-                 parseUrl="section_parseUrl" parse="section_parse" />
+                 buildUrl="build_url" buildWeb="build_url"
+                 parse="section_parse" />
     </main>
     <script>
         <require>
@@ -52,7 +53,7 @@
         </require>
         <code>
             <![CDATA[
-const mainHost = 'http://wap.90mh.com';
+const mainHost = 'http://www.90mh.com';
 const LARGE_SEC_SPLIT = 3;
 
 function urla(url, host) {
@@ -76,18 +77,35 @@ function build_url(url) {
     return url.replace(/^https?:\/\/[^\/]+/i, mainHost);
 }
 
+function hots_parse(url, html) {
+    var $ = cheerio.load(html);
+    var list = [];
+    $('ul.rank-list li.item-sm').each(function () {
+        var book = $(this);
+        var book_title = book.children('a.cover');
+        var bm = {};
+        bm.name = book_title.attr('title');
+        bm.url = urla(book_title.attr('href'));
+        bm.logo = book_title.children('img').attr('src');
+        bm.newSection = book_title.children('.tt').text();
+        /* bm.updateTime = book.find('.date').text().substr(0, 10); */
+        list.push(bm);
+    });
+    return JSON.stringify(list);
+}
+
 function updates_parse(url, html) {
     var $ = cheerio.load(html);
     var list = [];
-    $('div.itemBox').each(function () {
+    $('ul.book-list li.item-lg').each(function () {
         var book = $(this);
-        var book_title = book.find('.title');
+        var book_title = book.children('a.cover');
         var bm = {};
-        bm.name = book_title.text();
+        bm.name = book_title.attr('title');
         bm.url = urla(book_title.attr('href'));
-        bm.logo = book.find('mip-img').attr('src');
-        bm.newSection = book.find('.coll').text();
-        bm.updateTime = book.find('.date').text().substr(0, 10);
+        bm.logo = book_title.children('img').attr('src');
+        bm.newSection = book_title.children('.tt').text();
+        /* bm.updateTime = book.find('.date').text().substr(0, 10); */
         list.push(bm);
     });
     return JSON.stringify(list);
@@ -119,17 +137,17 @@ function tags_parse(url, html) {
 function tag_parse(url, html) {
     var $ = cheerio.load(html);
     var list = [];
-    $('li.list-comic').each(function () {
+    $('ul.book-list li.item-lg').each(function () {
         var book = $(this);
+        var book_title = book.children('a.cover');
         var bm = {};
-        var book_title = book.children('.txtA');
-        bm.name = book_title.text();
+        bm.name = book_title.attr('title');
         bm.url = urla(book_title.attr('href'));
-        bm.logo = book.find('mip-img').attr('src');
+        bm.logo = book_title.children('img').attr('src');
         bm.author = "";
         bm.status = "";
-        bm.newSection = book.children('.info').children('a').text();
-        bm.updateTime = "";
+        bm.newSection = book_title.children('.tt').text();
+        bm.updateTime = book_title.children('.updateon').text().replace('更新于：', '').substr(0, 10);
         list.push(bm);
     });
     return JSON.stringify(list);
@@ -159,40 +177,21 @@ function book_parse(url, html) {
     var $ = cheerio.load(html);
     var data = {};
 
-    data.name = $('.title').text();
-    data.author = $('dl.pic_zi:nth-child(6) > dd > a').text();
-    data.intro = $('.txtDesc').text().replace(/简介：|\[\-折叠\]/g, '');
-    data.logo = $('#Cover mip-img').attr('src');
-    data.updateTime = $('dl.pic_zi:nth-child(9) > dd').text();
+    data.name = $('.book-title > h1 > span').text();
+    data.author = $('ul.detail-list > li:nth-child(2) > span:nth-child(2) > a').text();
+    data.intro = $('#intro-all > p').text(); /* .replace(/简介：|\[\-折叠\]/g, ''); */
+    data.logo = $('div.book-cover > p.cover > img.pic').attr('src');
+    data.updateTime = $('li.status span.red').text();
     /* data.isSectionsAsc = 1; */
     var sections = [];
 
-    var sectionGroupCount = $('#list_block .title1_1').length;
-    $('#list_block .list').each(function () {
-        var list_group = $(this);
-        if (sectionGroupCount > 1) {
-            sections.push({
-                'name': list_group.prev().children('h3').text(),
-                'url': ''
-            });
-        }
-        list_group.find('li > a').each(function () {
-            var list_item = $(this);
-            var this_name = list_item.children('span').text(),
-                this_url = list_item.attr('href');
-            if (this_name.match(/卷$/)) {
-                for (i = 1; i <= LARGE_SEC_SPLIT; i++) {
-                    sections.push({
-                        'name': this_name + '(' + i + ')',
-                        'url': this_url + '#' + i
-                    });
-                }
-            } else {
-                sections.push({
-                    'name': this_name,
-                    'url': this_url
-                });
-            }
+    $('div.chapter-body > ul > li > a').each(function () {
+        var list_item = $(this);
+        var this_name = list_item.children('span').text(),
+            this_url = urla(list_item.attr('href'));
+        sections.push({
+            'name': this_name,
+            'url': this_url
         });
     });
 
@@ -201,32 +200,17 @@ function book_parse(url, html) {
     return JSON.stringify(data);
 }
 
-function section_parseUrl(url, html) {
-    var $ = cheerio.load(html);
-    var urls = [url.replace(/#[0-9]+$/,'')];
-
-    var imgCount = parseInt($('#k_total').text());
-    var baseUrl = urls[0].replace(/\.html$/, '');
-
-    for (i = 2; i <= imgCount; i++) {
-        urls.push(baseUrl + '-' + i + '.html');
-    }
-
-    var split = url.match(/#([0-9]+)$/);
-    if (split) {
-        split = parseInt(split[1]);
-        var split_length = Math.ceil(imgCount / LARGE_SEC_SPLIT);
-        urls = urls.slice((split - 1) * split_length, split * split_length);
-    }
-
-    return urls.join(';');
-}
-
 function section_parse(url, html) {
     var $ = cheerio.load(html);
     var list = [];
 
-    list.push($('#chapter-image > a > img').attr('src'));
+    var scriptText = $('script:contains("var chapterImages")').text()
+    eval(scriptText);
+
+    /* http://www.90mh.com/js/config.js */
+    var image_host = pageImage.match(/https?:\/\/[^\/]+\//)[0];
+    print(image_host);
+    list = chapterImages.map(function(item) {return image_host + chapterPath + item;});
 
     return JSON.stringify(list);
 }
