@@ -1,39 +1,24 @@
 # DDCat SiteD Plugin 多多猫插件
 
-## Plugin List
+## API Interface
 
-### Comic
+```typescript
+// GET /all.json
+interface PluginInfoAll {
+    updateTime: int
+    data: PluginInfo[]
+}
 
-- 90 漫画
-- 百年漫画
-- 漫画 160
+// GET /{$plugin_id}.json
+interface PluginInfo {
+    id: string // plugin id
+    version: number // plugin version
+    url: string // download url
+    expr: string // plugin site match patten
+    author?: string // plugin author
+    logo?: string // plugin logo
+    desc?: string // plugin description
+    time?: string // plugin update time, format: YYYY-MM-DD
+}
+```
 
-### Anime
-
-- 奇奇动漫
-
-### Gallery
-
-- 动漫星空
-
-### Tool
-
-- GUID 生成器
-
-## CHANGELOG
-
-### 2020-02-05
-
-#### Added
-
-- [动漫] 奇奇动漫.V1
-
-### 2020-01-30
-
-#### Added
-
-- [漫画] 90 漫画.V4
-- [漫画] 百年漫画.V5
-- [漫画] 漫画 160.V4
-- [图片] 动漫星空.V2
-- [小工具] GUID 生成器.V1

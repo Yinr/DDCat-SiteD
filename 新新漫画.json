@@ -1,0 +1,10 @@
+{
+  "id": "新新漫画",
+  "version": 8,
+  "url": "https://m.77mh.co/",
+  "expr": "m2?\\.77mh\\.(co|de|pro|in|one|xyz)",
+  "author": "Yinr",
+  "logo": "https://m.77mh.in/favicon.ico",
+  "desc": "[漫画] 集齐漫画资源相当丰富，只有你想不到的，没有看不到的，每天更新百部漫画。",
+  "time": "2023-6-14"
+}

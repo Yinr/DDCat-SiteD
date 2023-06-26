@@ -1,0 +1,10 @@
+{
+  "id": "GUID 生成器",
+  "version": 1,
+  "url": "https://yinr.cc/ddcat/",
+  "expr": "yinr\\.cc\\/ddcat",
+  "author": "Yinr",
+  "logo": "",
+  "desc": "[小工具] GUID 生成器，生成符合 RFC 4122 规范的 GUID v4（无连字符）。",
+  "time": "2023-6-14"
+}

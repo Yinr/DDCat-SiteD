@@ -1,0 +1,10 @@
+{
+  "id": "依依漫画",
+  "version": 7,
+  "url": "http://m.yiyimanhua.com/",
+  "expr": "m\\.yiyimanhua\\.com",
+  "author": "Yinr",
+  "logo": "http://m.yiyimanhua.com/favicon.ico",
+  "desc": "[漫画] 依依漫画网&#x000A;优化加载进度提示，增加下架漫画提示。&#x000A;因为源网站设计原因，部分章节可能加载较慢，请耐心等待加载",
+  "time": "2023-6-14"
+}

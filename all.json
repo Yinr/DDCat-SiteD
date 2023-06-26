@@ -1,0 +1,105 @@
+{
+  "updateTime": 1687781046435,
+  "data": [
+    {
+      "id": "90漫画",
+      "version": 10,
+      "url": "http://m.90mh.com/",
+      "expr": "\\.90mh\\.com",
+      "author": "Yinr",
+      "logo": "http://www.90mh.com/favicon.ico",
+      "desc": "[漫画] 90漫画网",
+      "time": "2023-6-26"
+    },
+    {
+      "id": "百年漫画",
+      "version": 14,
+      "url": "https://m.bnmanhua.com/",
+      "expr": "m\\.bnmanhua\\.com|m\\.bnman\\.net",
+      "author": "Yinr",
+      "logo": "https://m.bnman.net/favicon.ico",
+      "desc": "[漫画] 百年漫画网专注百年漫画，言情漫画，少女爱情等类型的漫画。百年漫画网第一时间更新天才小毒妃漫画，大角虫漫画，王牌校草漫画，指染成婚漫画等好看的漫画，看百年、少女爱情等类型漫画最好的网站！",
+      "time": "2023-6-14"
+    },
+    {
+      "id": "动漫星空",
+      "version": 2,
+      "url": "https://acg.gamersky.com/pic/",
+      "expr": "acg\\.gamersky\\.com\\/pic|so.gamersky.com\\/all\\/pic",
+      "author": "Yinr",
+      "logo": "https://acg.gamersky.com/favicon.ico",
+      "desc": "[图片] 动漫星空图库频道主要提供动漫壁纸，动漫高清壁纸，动漫桌面壁纸，动漫手机壁纸，以及动漫角色 Cosplay，声优写真。",
+      "time": "2023-3-8"
+    },
+    {
+      "id": "漫画160",
+      "version": 16,
+      "url": "https://m.mh160.co",
+      "expr": "m\\.mh160(\\.co|\\.xyz|\\.cc)",
+      "author": "Yinr",
+      "logo": "",
+      "desc": "[漫画] 漫画 160",
+      "time": "2023-6-14"
+    },
+    {
+      "id": "漫画码",
+      "version": 5,
+      "url": "https://m.manhuama.net",
+      "expr": "(www|m)\\.manhuama\\.(net|cn|com)",
+      "author": "Yinr",
+      "logo": "http://resource.simanhua.com/manhuama_pc/static/images/favicon.ico",
+      "desc": "[漫画][国漫为主] 漫画码是有上万部免费漫画大全的阅读平台，找免费漫画网就上漫画码&#x000A;更新说明：修复网站及搜索，修复部分下架漫画",
+      "time": "2023-6-14"
+    },
+    {
+      "id": "奇奇动漫",
+      "version": 2,
+      "url": "http://www.qiqidongman.com/",
+      "expr": "\\.qiqidongman\\.com",
+      "author": "Yinr",
+      "logo": "",
+      "desc": "[动漫] 奇奇动漫 - 好看的日本动漫,国产动画片大全,国语动漫,粤语动漫",
+      "time": "2023-6-14"
+    },
+    {
+      "id": "日剧啦",
+      "version": 1,
+      "url": "https://www.rijula.com/",
+      "expr": "\\.rijula\\.(com|cc)",
+      "author": "Yinr",
+      "logo": "https://www.rijula.com/template/vfed/asset/img/favicon.png",
+      "desc": "[动漫] 日剧啦提供最全的日剧在线观看，热播日剧大全以及日剧资料搜索，日本电视剧资讯和日本明星资讯！",
+      "time": "2023-6-14"
+    },
+    {
+      "id": "新新漫画",
+      "version": 8,
+      "url": "https://m.77mh.co/",
+      "expr": "m2?\\.77mh\\.(co|de|pro|in|one|xyz)",
+      "author": "Yinr",
+      "logo": "https://m.77mh.in/favicon.ico",
+      "desc": "[漫画] 集齐漫画资源相当丰富，只有你想不到的，没有看不到的，每天更新百部漫画。",
+      "time": "2023-6-14"
+    },
+    {
+      "id": "依依漫画",
+      "version": 7,
+      "url": "http://m.yiyimanhua.com/",
+      "expr": "m\\.yiyimanhua\\.com",
+      "author": "Yinr",
+      "logo": "http://m.yiyimanhua.com/favicon.ico",
+      "desc": "[漫画] 依依漫画网&#x000A;优化加载进度提示，增加下架漫画提示。&#x000A;因为源网站设计原因，部分章节可能加载较慢，请耐心等待加载",
+      "time": "2023-6-14"
+    },
+    {
+      "id": "GUID 生成器",
+      "version": 1,
+      "url": "https://yinr.cc/ddcat/",
+      "expr": "yinr\\.cc\\/ddcat",
+      "author": "Yinr",
+      "logo": "",
+      "desc": "[小工具] GUID 生成器，生成符合 RFC 4122 规范的 GUID v4（无连字符）。",
+      "time": "2023-6-14"
+    }
+  ]
+}

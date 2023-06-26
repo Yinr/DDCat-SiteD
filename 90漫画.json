@@ -1,0 +1,10 @@
+{
+  "id": "90漫画",
+  "version": 10,
+  "url": "http://m.90mh.com/",
+  "expr": "\\.90mh\\.com",
+  "author": "Yinr",
+  "logo": "http://www.90mh.com/favicon.ico",
+  "desc": "[漫画] 90漫画网",
+  "time": "2023-6-26"
+}

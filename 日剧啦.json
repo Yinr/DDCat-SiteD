@@ -1,0 +1,10 @@
+{
+  "id": "日剧啦",
+  "version": 1,
+  "url": "https://www.rijula.com/",
+  "expr": "\\.rijula\\.(com|cc)",
+  "author": "Yinr",
+  "logo": "https://www.rijula.com/template/vfed/asset/img/favicon.png",
+  "desc": "[动漫] 日剧啦提供最全的日剧在线观看，热播日剧大全以及日剧资料搜索，日本电视剧资讯和日本明星资讯！",
+  "time": "2023-6-14"
+}
