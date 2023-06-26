@@ -1,7 +1,8 @@
 {
   "id": "依依漫画",
   "version": 7,
-  "url": "http://m.yiyimanhua.com/",
+  "url": "sited://sited.lolicon.in/%E4%BE%9D%E4%BE%9D%E6%BC%AB%E7%94%BB.sited",
+  "site": "http://m.yiyimanhua.com/",
   "expr": "m\\.yiyimanhua\\.com",
   "author": "Yinr",
   "logo": "http://m.yiyimanhua.com/favicon.ico",

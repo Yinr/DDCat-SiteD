@@ -1,7 +1,8 @@
 {
   "id": "日剧啦",
   "version": 1,
-  "url": "https://www.rijula.com/",
+  "url": "sited://sited.lolicon.in/%E6%97%A5%E5%89%A7%E5%95%A6.sited",
+  "site": "https://www.rijula.com/",
   "expr": "\\.rijula\\.(com|cc)",
   "author": "Yinr",
   "logo": "https://www.rijula.com/template/vfed/asset/img/favicon.png",

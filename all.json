@@ -1,10 +1,11 @@
 {
-  "updateTime": 1687781046435,
+  "updateTime": 1687782840221,
   "data": [
     {
       "id": "90漫画",
       "version": 10,
-      "url": "http://m.90mh.com/",
+      "url": "sited://sited.lolicon.in/90%E6%BC%AB%E7%94%BB.sited",
+      "site": "http://m.90mh.com/",
       "expr": "\\.90mh\\.com",
       "author": "Yinr",
       "logo": "http://www.90mh.com/favicon.ico",
@@ -14,7 +15,8 @@
     {
       "id": "百年漫画",
       "version": 14,
-      "url": "https://m.bnmanhua.com/",
+      "url": "sited://sited.lolicon.in/%E7%99%BE%E5%B9%B4%E6%BC%AB%E7%94%BB.sited",
+      "site": "https://m.bnmanhua.com/",
       "expr": "m\\.bnmanhua\\.com|m\\.bnman\\.net",
       "author": "Yinr",
       "logo": "https://m.bnman.net/favicon.ico",
@@ -24,7 +26,8 @@
     {
       "id": "动漫星空",
       "version": 2,
-      "url": "https://acg.gamersky.com/pic/",
+      "url": "sited://sited.lolicon.in/%E5%8A%A8%E6%BC%AB%E6%98%9F%E7%A9%BA.sited",
+      "site": "https://acg.gamersky.com/pic/",
       "expr": "acg\\.gamersky\\.com\\/pic|so.gamersky.com\\/all\\/pic",
       "author": "Yinr",
       "logo": "https://acg.gamersky.com/favicon.ico",
@@ -34,7 +37,8 @@
     {
       "id": "漫画160",
       "version": 16,
-      "url": "https://m.mh160.co",
+      "url": "sited://sited.lolicon.in/%E6%BC%AB%E7%94%BB160.sited",
+      "site": "https://m.mh160.co",
       "expr": "m\\.mh160(\\.co|\\.xyz|\\.cc)",
       "author": "Yinr",
       "logo": "",
@@ -44,7 +48,8 @@
     {
       "id": "漫画码",
       "version": 5,
-      "url": "https://m.manhuama.net",
+      "url": "sited://sited.lolicon.in/%E6%BC%AB%E7%94%BB%E7%A0%81.sited",
+      "site": "https://m.manhuama.net",
       "expr": "(www|m)\\.manhuama\\.(net|cn|com)",
       "author": "Yinr",
       "logo": "http://resource.simanhua.com/manhuama_pc/static/images/favicon.ico",
@@ -54,7 +59,8 @@
     {
       "id": "奇奇动漫",
       "version": 2,
-      "url": "http://www.qiqidongman.com/",
+      "url": "sited://sited.lolicon.in/%E5%A5%87%E5%A5%87%E5%8A%A8%E6%BC%AB.sited",
+      "site": "http://www.qiqidongman.com/",
       "expr": "\\.qiqidongman\\.com",
       "author": "Yinr",
       "logo": "",
@@ -64,7 +70,8 @@
     {
       "id": "日剧啦",
       "version": 1,
-      "url": "https://www.rijula.com/",
+      "url": "sited://sited.lolicon.in/%E6%97%A5%E5%89%A7%E5%95%A6.sited",
+      "site": "https://www.rijula.com/",
       "expr": "\\.rijula\\.(com|cc)",
       "author": "Yinr",
       "logo": "https://www.rijula.com/template/vfed/asset/img/favicon.png",
@@ -74,7 +81,8 @@
     {
       "id": "新新漫画",
       "version": 8,
-      "url": "https://m.77mh.co/",
+      "url": "sited://sited.lolicon.in/%E6%96%B0%E6%96%B0%E6%BC%AB%E7%94%BB.sited",
+      "site": "https://m.77mh.co/",
       "expr": "m2?\\.77mh\\.(co|de|pro|in|one|xyz)",
       "author": "Yinr",
       "logo": "https://m.77mh.in/favicon.ico",
@@ -84,7 +92,8 @@
     {
       "id": "依依漫画",
       "version": 7,
-      "url": "http://m.yiyimanhua.com/",
+      "url": "sited://sited.lolicon.in/%E4%BE%9D%E4%BE%9D%E6%BC%AB%E7%94%BB.sited",
+      "site": "http://m.yiyimanhua.com/",
       "expr": "m\\.yiyimanhua\\.com",
       "author": "Yinr",
       "logo": "http://m.yiyimanhua.com/favicon.ico",
@@ -94,7 +103,8 @@
     {
       "id": "GUID 生成器",
       "version": 1,
-      "url": "https://yinr.cc/ddcat/",
+      "url": "sited://sited.lolicon.in/GUID%20%E7%94%9F%E6%88%90%E5%99%A8.sited",
+      "site": "https://yinr.cc/ddcat/",
       "expr": "yinr\\.cc\\/ddcat",
       "author": "Yinr",
       "logo": "",

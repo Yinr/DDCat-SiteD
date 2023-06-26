@@ -1,7 +1,8 @@
 {
   "id": "百年漫画",
   "version": 14,
-  "url": "https://m.bnmanhua.com/",
+  "url": "sited://sited.lolicon.in/%E7%99%BE%E5%B9%B4%E6%BC%AB%E7%94%BB.sited",
+  "site": "https://m.bnmanhua.com/",
   "expr": "m\\.bnmanhua\\.com|m\\.bnman\\.net",
   "author": "Yinr",
   "logo": "https://m.bnman.net/favicon.ico",

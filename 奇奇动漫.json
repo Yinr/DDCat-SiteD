@@ -1,7 +1,8 @@
 {
   "id": "奇奇动漫",
   "version": 2,
-  "url": "http://www.qiqidongman.com/",
+  "url": "sited://sited.lolicon.in/%E5%A5%87%E5%A5%87%E5%8A%A8%E6%BC%AB.sited",
+  "site": "http://www.qiqidongman.com/",
   "expr": "\\.qiqidongman\\.com",
   "author": "Yinr",
   "logo": "",

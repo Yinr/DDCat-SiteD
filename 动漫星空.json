@@ -1,7 +1,8 @@
 {
   "id": "动漫星空",
   "version": 2,
-  "url": "https://acg.gamersky.com/pic/",
+  "url": "sited://sited.lolicon.in/%E5%8A%A8%E6%BC%AB%E6%98%9F%E7%A9%BA.sited",
+  "site": "https://acg.gamersky.com/pic/",
   "expr": "acg\\.gamersky\\.com\\/pic|so.gamersky.com\\/all\\/pic",
   "author": "Yinr",
   "logo": "https://acg.gamersky.com/favicon.ico",
