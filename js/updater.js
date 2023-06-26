@@ -65,7 +65,7 @@
  * ```
  *
  */
-function get_update_item(plugin_id, plugin_version, update_infos) {
+function get_update_item(plugin_id, plugin_version, update_infos, send_notify=false) {
     if (!plugin_id || plugin_version === undefined) return null;
     if (!update_infos || !(update_infos instanceof Array)) return null;
 
@@ -88,6 +88,9 @@ function get_update_item(plugin_id, plugin_version, update_infos) {
         /* additional info */
         id: info.id,
         version: info.version,
+    }
+    if (send_notify) {
+        print('插件 ' + plugin_id + ' 可以更新到 V' + info.version);
     }
     return update_item;
 }
