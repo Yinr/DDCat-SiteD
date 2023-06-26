@@ -14,6 +14,7 @@ interface PluginInfo {
     id: string // plugin id
     version: number // plugin version
     url: string // download url
+    site: string // plugin site
     expr: string // plugin site match patten
     author?: string // plugin author
     logo?: string // plugin logo
