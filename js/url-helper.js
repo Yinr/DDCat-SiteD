@@ -14,14 +14,15 @@
  * @param {string} [default_protocol=http] default protocol for filling
  * @returns {string} filled url
  */
-function filling_url(url, host, default_protocol = 'http') {
+function filling_url(url, host, default_protocol) {
+    if (default_protocol === undefined) default_protocol = 'http:';
     host = host.replace(/\/$/, '');
 
     var u = decodeURI(url);
 
     if (u.indexOf("http") < 0) {
         if (u.substr(0, 2) == '//') {
-            u = default_protocol + ':' + u;
+            u = default_protocol + u;
         } else {
             if (u.substr(0, 1) == '/') u = host + u;
             else u = host + '/' + u;

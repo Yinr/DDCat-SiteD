@@ -46,6 +46,7 @@
  * @param {string} plugin_id plugin id
  * @param {number} plugin_version plugin version
  * @param {PluginInfo[]} update_infos plugins update infomation array
+ * @param {boolean} [send_notify] whether to send notify if found a update
  * @return {SitedUpdateItemForPlugin|null} DDCat update item
  *
  * @example
@@ -65,7 +66,7 @@
  * ```
  *
  */
-function get_update_item(plugin_id, plugin_version, update_infos, send_notify=false) {
+function get_update_item(plugin_id, plugin_version, update_infos, send_notify) {
     if (!plugin_id || plugin_version === undefined) return null;
     if (!update_infos || !(update_infos instanceof Array)) return null;
 
