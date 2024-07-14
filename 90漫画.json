@@ -1,11 +1,11 @@
 {
   "id": "90漫画",
-  "version": 14,
+  "version": 15,
   "url": "sited://sited.lolicon.in/90%E6%BC%AB%E7%94%BB.sited",
   "site": "http://m.90mh.com/",
-  "expr": "\\.90mh\\.(com|org)",
+  "expr": "\\.9(0|2)mh\\.(com|org)",
   "author": "Yinr",
-  "logo": "http://www.90mh.com/favicon.ico",
+  "logo": "http://www.92mh.com/favicon.ico",
   "desc": "[漫画] 90漫画网",
-  "time": "2023-8-11"
+  "time": "2024-7-17"
 }
