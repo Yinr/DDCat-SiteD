@@ -1,16 +1,27 @@
 {
-  "updateTime": 1720948223737,
+  "updateTime": 1725344067997,
   "data": [
     {
       "id": "90漫画",
-      "version": 15,
+      "version": 16,
       "url": "sited://sited.lolicon.in/90%E6%BC%AB%E7%94%BB.sited",
       "site": "http://m.90mh.com/",
-      "expr": "\\.9(0|2)mh\\.(com|org)",
+      "expr": "\\.90mh\\.(com|org)",
+      "author": "Yinr",
+      "logo": "http://www.90mh.com/favicon.ico",
+      "desc": "[漫画] 90漫画网",
+      "time": "2024-9-3"
+    },
+    {
+      "id": "92漫画",
+      "version": 1,
+      "url": "sited://sited.lolicon.in/92%E6%BC%AB%E7%94%BB.sited",
+      "site": "http://www.92mh.com/",
+      "expr": "\\.92mh\\.com",
       "author": "Yinr",
       "logo": "http://www.92mh.com/favicon.ico",
-      "desc": "[漫画] 90漫画网",
-      "time": "2024-7-11"
+      "desc": "[漫画] 92漫画网",
+      "time": "2024-9-3"
     },
     {
       "id": "百年漫画",
